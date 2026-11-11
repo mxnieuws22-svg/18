@@ -27,6 +27,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
         {check && <p className="rounded-xl border border-accent/30 bg-accent/10 p-3 text-sm text-accent-soft">Account aangemaakt. Controleer je e-mail (ook de spammap) en klik op de bevestigingslink. Daarna kun je inloggen.</p>}
         {error && <p className="text-sm text-red-400">Ongeldig e-mailadres of wachtwoord.</p>}
         <button className="btn-primary w-full">Inloggen</button>
+        <p className="text-center text-xs"><Link href="/forgot-password" className="text-zinc-500 hover:text-accent">Wachtwoord vergeten?</Link></p>
       </form>
       <p className="mt-5 text-center text-sm text-zinc-500">Nog geen account? <Link href="/signup" className="text-accent">Aanmelden</Link></p>
     </div>

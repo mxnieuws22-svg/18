@@ -31,6 +31,24 @@ async function requestVerification() {
   revalidatePath("/account");
 }
 
+async function deleteAccount(formData: FormData) {
+  "use server";
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/login");
+  const { data: me } = await supabase.from("profiles").select("username, role").eq("id", user.id).single();
+  if (!me || me.role === "admin") redirect("/account?delete=admin");
+  if (String(formData.get("confirm")).trim().toLowerCase() !== me.username) redirect("/account?delete=confirm");
+
+  // Remove stored files first (direct SQL deletes on storage are blocked).
+  const { data: files } = await supabase.storage.from("media").list(user.id, { limit: 1000 });
+  if (files?.length) await supabase.storage.from("media").remove(files.map((f) => `${user.id}/${f.name}`));
+  const { error } = await supabase.rpc("delete_my_account");
+  if (error) redirect("/account?delete=error");
+  await supabase.auth.signOut();
+  redirect("/?verwijderd=1");
+}
+
 const STATUS_COPY: Record<string, string> = {
   unverified: "Dien je profiel in voor beoordeling om zichtbaar te worden.",
   pending: "In beoordeling. Je verschijnt in Ontdekken zodra je bent goedgekeurd.",
@@ -38,7 +56,8 @@ const STATUS_COPY: Record<string, string> = {
   rejected: "Je aanvraag is niet goedgekeurd. Pas je profiel aan en vraag opnieuw aan.",
 };
 
-export default async function Account() {
+export default async function Account({ searchParams }: { searchParams: Promise<{ delete?: string }> }) {
+  const { delete: del } = await searchParams;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login?next=/account");
@@ -88,6 +107,18 @@ export default async function Account() {
         )}
         <button className="btn-primary">Opslaan</button>
       </form>
+
+      <details className="card mt-6 p-6" open={!!del}>
+        <summary className="cursor-pointer text-sm text-red-400">Account verwijderen</summary>
+        <form action={deleteAccount} className="mt-4 space-y-3">
+          <p className="text-sm text-zinc-400">Dit wist je profiel, uploads, volgrelaties en meldingen definitief. Typ je gebruikersnaam (<b className="text-white">{profile.username}</b>) ter bevestiging.</p>
+          <input name="confirm" required className="input" autoComplete="off" />
+          {del === "confirm" && <p className="text-sm text-red-400">De gebruikersnaam komt niet overeen.</p>}
+          {del === "admin" && <p className="text-sm text-red-400">Beheerders kunnen hun account niet zelf verwijderen.</p>}
+          {del === "error" && <p className="text-sm text-red-400">Verwijderen mislukt. Probeer het opnieuw.</p>}
+          <button className="btn-ghost !text-red-400">Definitief verwijderen</button>
+        </form>
+      </details>
     </div>
   );
 }
