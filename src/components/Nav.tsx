@@ -17,7 +17,7 @@ export default async function Nav() {
           Veil<span className="text-accent">.</span>
         </Link>
         <div className="flex items-center gap-1 text-sm text-zinc-400 sm:gap-3">
-          <Link href="/discover" className="rounded-full px-3 py-1.5 hover:text-white">Discover</Link>
+          <Link href="/discover" className="rounded-full px-3 py-1.5 hover:text-white">Ontdekken</Link>
           {role === "creator" && (
             <Link href="/studio" className="rounded-full px-3 py-1.5 hover:text-white">Studio</Link>
           )}
@@ -25,13 +25,13 @@ export default async function Nav() {
             <>
               <Link href="/account" className="rounded-full px-3 py-1.5 hover:text-white">Account</Link>
               <form action="/auth/signout" method="post">
-                <button className="btn-ghost !py-1.5">Sign out</button>
+                <button className="btn-ghost !py-1.5">Uitloggen</button>
               </form>
             </>
           ) : (
             <>
-              <Link href="/login" className="rounded-full px-3 py-1.5 hover:text-white">Log in</Link>
-              <Link href="/signup" className="btn-primary !py-1.5">Join</Link>
+              <Link href="/login" className="rounded-full px-3 py-1.5 hover:text-white">Inloggen</Link>
+              <Link href="/signup" className="btn-primary !py-1.5">Aanmelden</Link>
             </>
           )}
         </div>

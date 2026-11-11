@@ -46,9 +46,9 @@ export default async function CreatorPage({ params }: { params: Promise<{ userna
         </div>
         <div className="flex-1">
           <h1 className="font-display text-3xl text-white">
-            {creator.display_name} <span className="text-lg text-accent" title="Verified">✓</span>
+            {creator.display_name} <span className="text-lg text-accent" title="Geverifieerd">✓</span>
           </h1>
-          <p className="text-sm text-zinc-500">@{creator.username} · {Number(count ?? 0)} followers</p>
+          <p className="text-sm text-zinc-500">@{creator.username} · {Number(count ?? 0)} volgers</p>
           {cp?.headline && <p className="mt-2 text-zinc-300">{cp.headline}</p>}
         </div>
         {!isSelf && (
@@ -56,14 +56,14 @@ export default async function CreatorPage({ params }: { params: Promise<{ userna
             <input type="hidden" name="creatorId" value={creator.id} />
             <input type="hidden" name="username" value={creator.username} />
             <input type="hidden" name="following" value={following ? "1" : "0"} />
-            <button className={following ? "btn-ghost" : "btn-primary"}>{following ? "Following" : "Follow"}</button>
+            <button className={following ? "btn-ghost" : "btn-primary"}>{following ? "Volgend" : "Volgen"}</button>
           </form>
         )}
       </div>
 
       {cp?.about && (
         <section className="mt-8">
-          <h2 className="label">About</h2>
+          <h2 className="label">Over</h2>
           <p className="whitespace-pre-line leading-relaxed text-zinc-300">{cp.about}</p>
         </section>
       )}
@@ -79,7 +79,7 @@ export default async function CreatorPage({ params }: { params: Promise<{ userna
         <h2 className="label">Content</h2>
         {items.length === 0 ? (
           <div className="card p-8 text-center text-sm text-zinc-500">
-            Nothing shared with you yet. Content is private unless the creator chooses to share it.
+            Er is nog niets met jou gedeeld. Content is privé tenzij de creator het deelt.
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -101,11 +101,11 @@ export default async function CreatorPage({ params }: { params: Promise<{ userna
 
       {!isSelf && (
         <details className="mt-12 text-sm text-zinc-500">
-          <summary className="cursor-pointer hover:text-zinc-300">Report this profile</summary>
+          <summary className="cursor-pointer hover:text-zinc-300">Dit profiel melden</summary>
           <form action={reportCreator} className="mt-3 flex max-w-md flex-col gap-3">
             <input type="hidden" name="creatorId" value={creator.id} />
-            <textarea name="reason" required minLength={3} maxLength={1000} rows={3} className="input" placeholder="What is wrong?" />
-            <button className="btn-ghost self-start">Submit report</button>
+            <textarea name="reason" required minLength={3} maxLength={1000} rows={3} className="input" placeholder="Wat is er mis?" />
+            <button className="btn-ghost self-start">Melding versturen</button>
           </form>
         </details>
       )}

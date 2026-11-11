@@ -69,16 +69,16 @@ export default async function Studio() {
   return (
     <div className="mx-auto max-w-4xl px-5 py-14">
       <h1 className="font-display text-3xl text-white">Studio</h1>
-      <p className="mt-1 text-sm text-zinc-400">Everything you upload is <b className="text-white">private</b> until you share it and it passes review.</p>
+      <p className="mt-1 text-sm text-zinc-400">Alles wat je uploadt is <b className="text-white">privé</b> totdat je het deelt en het is goedgekeurd.</p>
 
       {!verified ? (
-        <div className="card mt-8 p-6 text-sm text-zinc-400">Uploads unlock after your profile is verified. Check your status in Account.</div>
+        <div className="card mt-8 p-6 text-sm text-zinc-400">Uploaden wordt beschikbaar nadat je profiel is geverifieerd. Bekijk je status bij Account.</div>
       ) : (
         <form action={upload} className="card mt-8 flex flex-col gap-3 p-5 sm:flex-row sm:items-end">
-          <div className="flex-1"><label className="label">Title</label><input name="title" maxLength={120} className="input" /></div>
-          <div className="flex-1"><label className="label">File (jpg, png, webp, mp4, webm · max 50 MB)</label>
+          <div className="flex-1"><label className="label">Titel</label><input name="title" maxLength={120} className="input" /></div>
+          <div className="flex-1"><label className="label">Bestand (jpg, png, webp, mp4, webm · max. 50 MB)</label>
             <input name="file" type="file" required accept="image/jpeg,image/png,image/webp,video/mp4,video/webm" className="input" /></div>
-          <button className="btn-primary">Upload</button>
+          <button className="btn-primary">Uploaden</button>
         </form>
       )}
 
@@ -92,17 +92,17 @@ export default async function Studio() {
                 {url && m.kind === "video" && <video src={url} controls preload="none" className="h-full w-full object-cover" />}
               </div>
               <div className="space-y-2 p-3 text-xs">
-                <p className="truncate text-zinc-300">{m.title || "Untitled"} · <span className="text-zinc-500">{m.moderation}</span></p>
+                <p className="truncate text-zinc-300">{m.title || "Zonder titel"} · <span className="text-zinc-500">{m.moderation}</span></p>
                 <form action={setVisibility} className="flex gap-2">
                   <input type="hidden" name="id" value={m.id} />
                   <select name="visibility" defaultValue={m.visibility} className="input !py-1 !text-xs">
-                    <option value="private">Private</option><option value="followers">Followers</option><option value="public">All members</option>
+                    <option value="private">Privé</option><option value="followers">Volgers</option><option value="public">Alle leden</option>
                   </select>
-                  <button className="btn-ghost !px-3 !py-1">Set</button>
+                  <button className="btn-ghost !px-3 !py-1">Instellen</button>
                 </form>
                 <form action={remove}>
                   <input type="hidden" name="id" value={m.id} /><input type="hidden" name="path" value={m.storage_path} />
-                  <button className="text-red-400 hover:underline">Delete</button>
+                  <button className="text-red-400 hover:underline">Verwijderen</button>
                 </form>
               </div>
             </div>

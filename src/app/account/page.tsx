@@ -32,10 +32,10 @@ async function requestVerification() {
 }
 
 const STATUS_COPY: Record<string, string> = {
-  unverified: "Submit your profile for review to be listed.",
-  pending: "Under review. You’ll appear in Discover once approved.",
-  verified: "Verified — your profile is live.",
-  rejected: "Your application was not approved. Update your profile and re-apply.",
+  unverified: "Dien je profiel in voor beoordeling om zichtbaar te worden.",
+  pending: "In beoordeling. Je verschijnt in Ontdekken zodra je bent goedgekeurd.",
+  verified: "Geverifieerd — je profiel is live.",
+  rejected: "Je aanvraag is niet goedgekeurd. Pas je profiel aan en vraag opnieuw aan.",
 };
 
 export default async function Account() {
@@ -58,24 +58,24 @@ export default async function Account() {
       {isCreator && (
         <div className="card mt-8 flex items-center justify-between gap-4 p-5">
           <div>
-            <p className="text-sm font-medium text-white">Verification: {profile.verification_status}</p>
+            <p className="text-sm font-medium text-white">Verificatie: {profile.verification_status}</p>
             <p className="text-sm text-zinc-400">{STATUS_COPY[profile.verification_status]}</p>
           </div>
           {(profile.verification_status === "unverified" || profile.verification_status === "rejected") && (
-            <form action={requestVerification}><button className="btn-primary">Apply</button></form>
+            <form action={requestVerification}><button className="btn-primary">Aanvragen</button></form>
           )}
         </div>
       )}
 
       <form action={saveProfile} className="card mt-6 space-y-4 p-6">
         <input type="hidden" name="is_creator" value={isCreator ? "1" : "0"} />
-        <div><label className="label">Display name</label><input name="display_name" defaultValue={profile.display_name} maxLength={60} className="input" /></div>
+        <div><label className="label">Weergavenaam</label><input name="display_name" defaultValue={profile.display_name} maxLength={60} className="input" /></div>
         {isCreator && (
           <>
-            <div><label className="label">Headline</label><input name="headline" defaultValue={cp?.headline ?? ""} maxLength={120} className="input" /></div>
-            <div><label className="label">About</label><textarea name="about" defaultValue={cp?.about ?? ""} maxLength={2000} rows={5} className="input" /></div>
+            <div><label className="label">Kopregel</label><input name="headline" defaultValue={cp?.headline ?? ""} maxLength={120} className="input" /></div>
+            <div><label className="label">Over</label><textarea name="about" defaultValue={cp?.about ?? ""} maxLength={2000} rows={5} className="input" /></div>
             <div>
-              <span className="label">Categories (max 6)</span>
+              <span className="label">Categorieën (max. 6)</span>
               <div className="flex flex-wrap gap-2">
                 {CATEGORIES.map((c) => (
                   <label key={c} className="cursor-pointer rounded-full border border-white/10 px-3 py-1 text-xs text-zinc-400 has-[:checked]:border-accent/60 has-[:checked]:text-accent">
@@ -86,7 +86,7 @@ export default async function Account() {
             </div>
           </>
         )}
-        <button className="btn-primary">Save</button>
+        <button className="btn-primary">Opslaan</button>
       </form>
     </div>
   );

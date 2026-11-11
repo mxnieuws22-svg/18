@@ -19,15 +19,15 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
   const { error, next = "/discover" } = await searchParams;
   return (
     <div className="mx-auto max-w-sm px-5 py-20">
-      <h1 className="font-display text-3xl text-white">Welcome back</h1>
+      <h1 className="font-display text-3xl text-white">Welkom terug</h1>
       <form action={login} className="card mt-8 space-y-4 p-6">
         <input type="hidden" name="next" value={next} />
-        <div><label className="label">Email</label><input name="email" type="email" required autoComplete="email" className="input" /></div>
-        <div><label className="label">Password</label><input name="password" type="password" required autoComplete="current-password" className="input" /></div>
-        {error && <p className="text-sm text-red-400">Invalid email or password.</p>}
-        <button className="btn-primary w-full">Log in</button>
+        <div><label className="label">E-mail</label><input name="email" type="email" required autoComplete="email" className="input" /></div>
+        <div><label className="label">Wachtwoord</label><input name="password" type="password" required autoComplete="current-password" className="input" /></div>
+        {error && <p className="text-sm text-red-400">Ongeldig e-mailadres of wachtwoord.</p>}
+        <button className="btn-primary w-full">Inloggen</button>
       </form>
-      <p className="mt-5 text-center text-sm text-zinc-500">No account? <Link href="/signup" className="text-accent">Join</Link></p>
+      <p className="mt-5 text-center text-sm text-zinc-500">Nog geen account? <Link href="/signup" className="text-accent">Aanmelden</Link></p>
     </div>
   );
 }

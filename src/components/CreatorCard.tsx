@@ -19,7 +19,7 @@ export default function CreatorCard(props: {
       <div className="p-4">
         <div className="flex items-center gap-1.5">
           <h3 className="truncate font-medium text-white">{props.displayName}</h3>
-          <span title="Verified" className="text-accent">✓</span>
+          <span title="Geverifieerd" className="text-accent">✓</span>
         </div>
         <p className="text-xs text-zinc-500">@{props.username}</p>
         {props.headline && <p className="mt-2 line-clamp-2 text-sm text-zinc-400">{props.headline}</p>}
