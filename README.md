@@ -13,6 +13,7 @@ Next.js 15 (App Router) · Tailwind · Supabase Auth + PostgreSQL + Storage.
    update profiles set role = 'admin' where username = 'you';
    update profiles set verification_status = 'verified' where username = 'creator1';
    update media set moderation = 'approved' where id = '...';
+   -- of gebruik het beheerpaneel op /admin
    ```
 
 ## Security model
