@@ -1,6 +1,6 @@
 import Legal from "@/components/Legal";
 
-export const metadata = { title: "Privacy — Veil" };
+export const metadata = { title: "Privacy — Fannova" };
 
 export default function Privacy() {
   return (

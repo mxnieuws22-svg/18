@@ -1,5 +1,5 @@
 -- =============================================================================
--- Veil MVP schema: adults-only creators & fans. Privacy by default.
+-- Fannova MVP schema: adults-only creators & fans. Privacy by default.
 -- Every table has RLS enabled. Media is private unless the creator opts in AND
 -- moderation has approved it. No payments / DMs in this version.
 -- =============================================================================

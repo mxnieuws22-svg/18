@@ -1,12 +1,12 @@
 import Legal from "@/components/Legal";
 
-export const metadata = { title: "Voorwaarden — Veil" };
+export const metadata = { title: "Voorwaarden — Fannova" };
 
 export default function Voorwaarden() {
   return (
     <Legal title="Gebruiksvoorwaarden">
       <section><h2>1. Alleen voor volwassenen</h2>
-        <p>Veil is uitsluitend bestemd voor personen van 18 jaar of ouder. Door een account aan te maken bevestig je dat je 18 of ouder bent en dat het bekijken van content voor volwassenen is toegestaan in jouw land.</p></section>
+        <p>Fannova is uitsluitend bestemd voor personen van 18 jaar of ouder. Door een account aan te maken bevestig je dat je 18 of ouder bent en dat het bekijken van content voor volwassenen is toegestaan in jouw land.</p></section>
       <section><h2>2. Creators</h2>
         <ul>
           <li>Creators worden beoordeeld voordat hun profiel zichtbaar is.</li>

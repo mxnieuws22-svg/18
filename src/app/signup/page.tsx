@@ -45,7 +45,7 @@ export default async function Signup({ searchParams }: { searchParams: Promise<{
   const { error, role } = await searchParams;
   return (
     <div className="mx-auto max-w-md px-5 py-16">
-      <h1 className="font-display text-3xl text-white">Aanmelden bij Veil</h1>
+      <h1 className="font-display text-3xl text-white">Aanmelden bij Fannova</h1>
       <p className="mt-2 text-sm text-zinc-400">Alleen voor volwassenen. Creators worden beoordeeld voordat ze live gaan.</p>
       <form action={signup} className="card mt-8 space-y-4 p-6">
         <div className="grid grid-cols-2 gap-3 text-sm">

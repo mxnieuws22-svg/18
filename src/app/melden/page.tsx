@@ -1,6 +1,6 @@
 import Legal from "@/components/Legal";
 
-export const metadata = { title: "Content melden — Veil" };
+export const metadata = { title: "Content melden — Fannova" };
 
 export default function Melden() {
   return (

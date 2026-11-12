@@ -8,7 +8,7 @@ const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const display = Fraunces({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: "Veil — geverifieerde creators, standaard privé",
+  title: "Fannova — geverifieerde creators, standaard privé",
   description: "Een premium platform voor geverifieerde volwassen creators en fans. Alleen 18+.",
   robots: { index: false, follow: false },
 };

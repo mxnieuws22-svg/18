@@ -1,4 +1,4 @@
-# Veil — verified adult creators, private by default (MVP)
+# Fannova — verified adult creators, private by default (MVP)
 
 Next.js 15 (App Router) · Tailwind · Supabase Auth + PostgreSQL + Storage.
 **Out of scope for now:** payments and private messaging.
