@@ -6,8 +6,9 @@ import SetupScreen from "./src/screens/SetupScreen";
 import GameScreen from "./src/screens/GameScreen";
 import AuthScreen from "./src/screens/AuthScreen";
 import AccountScreen from "./src/screens/AccountScreen";
+import WelcomeScreen from "./src/screens/WelcomeScreen";
 import { createGame, type GameConfig, type GameState } from "./src/engine/game";
-import { loadGame, saveGame } from "./src/state/storage";
+import { loadGame, loadGuest, saveGame, saveGuest } from "./src/state/storage";
 import { AuthProvider, useAuth } from "./src/state/auth";
 import { enqueueFinished, flushOutbox, isFinished } from "./src/state/sync";
 import { colors } from "./src/theme";
@@ -20,9 +21,13 @@ function Root() {
   const [saved, setSaved] = useState<GameState | null>(null);
   const [game, setGame] = useState<GameState | null>(null);
   const [screen, setScreen] = useState<Screen>("main");
+  const [authMode, setAuthMode] = useState<"login" | "signup">("login");
+  const [guest, setGuest] = useState(false);
   const userId = auth.user?.id ?? null;
 
-  useEffect(() => { loadGame().then((g) => { setSaved(g); setReady(true); }); }, []);
+  useEffect(() => {
+    Promise.all([loadGame(), loadGuest()]).then(([g, guestChoice]) => { setSaved(g); setGuest(guestChoice); setReady(true); });
+  }, []);
 
   // When logged in: upload anything queued, and any finished game still waiting on this device.
   useEffect(() => {
@@ -59,14 +64,27 @@ function Root() {
       />
     );
   }
-  if (screen === "auth") return <AuthScreen onDone={() => setScreen("main")} onBack={() => setScreen("main")} />;
+  if (screen === "auth") {
+    return <AuthScreen initialMode={authMode} onDone={() => setScreen("main")} onBack={() => setScreen("main")} />;
+  }
   if (screen === "account" && auth.user) return <AccountScreen onBack={() => setScreen("main")} />;
+
+  // Visitors land here first: create an account, log in, or (offline-friendly) continue as guest.
+  if (auth.configured && !auth.user && !guest) {
+    return (
+      <WelcomeScreen
+        onSignup={() => { setAuthMode("signup"); setScreen("auth"); }}
+        onLogin={() => { setAuthMode("login"); setScreen("auth"); }}
+        onGuest={() => { setGuest(true); saveGuest(true); }}
+      />
+    );
+  }
 
   return (
     <SetupScreen
       username={auth.username}
       accountsEnabled={auth.configured}
-      onAccount={() => setScreen(auth.user ? "account" : "auth")}
+      onAccount={() => { if (auth.user) setScreen("account"); else { setAuthMode("login"); setScreen("auth"); } }}
       hasSavedGame={!!saved && saved.turns.length > 0 && !isFinished(saved)}
       onStart={(cfg: GameConfig) => update(createGame(cfg))}
       onResume={() => saved && setGame(saved)}

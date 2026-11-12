@@ -33,3 +33,12 @@ export async function loadSetup(): Promise<GameConfig | null> {
     return raw ? (JSON.parse(raw) as GameConfig) : null;
   } catch { return null; }
 }
+
+// Remembers that the visitor chose "continue without account", so we don't ask on every visit.
+const GUEST_KEY = "darts.guest.v1";
+export async function loadGuest(): Promise<boolean> {
+  try { return (await AsyncStorage.getItem(GUEST_KEY)) === "1"; } catch { return false; }
+}
+export async function saveGuest(v: boolean): Promise<void> {
+  try { if (v) await AsyncStorage.setItem(GUEST_KEY, "1"); else await AsyncStorage.removeItem(GUEST_KEY); } catch { /* ignore */ }
+}

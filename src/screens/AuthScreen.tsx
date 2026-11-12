@@ -8,9 +8,9 @@ import { colors } from "../theme";
 
 type Mode = "login" | "signup" | "verify" | "forgot" | "reset";
 
-export default function AuthScreen({ onDone, onBack }: { onDone: () => void; onBack: () => void }) {
+export default function AuthScreen({ initialMode = "login", onDone, onBack }: { initialMode?: "login" | "signup"; onDone: () => void; onBack: () => void }) {
   const auth = useAuth();
-  const [mode, setMode] = useState<Mode>("login");
+  const [mode, setMode] = useState<Mode>(initialMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
