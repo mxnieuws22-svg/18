@@ -1,4 +1,4 @@
--- Darts AutoScore: accounts, game history and stats. Everything is owner-only via RLS.
+-- Dartscore: accounts, game history and stats. Everything is owner-only via RLS.
 
 create table public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,

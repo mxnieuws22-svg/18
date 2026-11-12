@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Darts AutoScore",
-    "slug": "darts-autoscore",
+    "name": "Dartscore",
+    "slug": "dartscore",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,8 +22,8 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro",
       "output": "single",
-      "name": "Darts AutoScore",
-      "shortName": "Darts",
+      "name": "Dartscore",
+      "shortName": "Dartscore",
       "backgroundColor": "#0A0E13",
       "themeColor": "#0A0E13"
     },

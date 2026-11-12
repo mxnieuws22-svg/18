@@ -1,4 +1,4 @@
-# Darts AutoScore
+# Dartscore
 
 Mobiele app (iPhone + Android) voor het bijhouden van darts. **Fase 1:** handmatige score-app (301/501).
 Latere fases: telefooncamera, dartbord herkennen, automatisch scoren.

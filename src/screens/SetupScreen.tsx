@@ -46,7 +46,7 @@ export default function SetupScreen({ username, accountsEnabled, onAccount, hasS
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
           <View style={styles.rowBetween}>
-            <Text style={styles.logo}>🎯 Darts AutoScore</Text>
+            <Text style={styles.logo}>🎯 Dartscore</Text>
           </View>
           <View style={[styles.rowBetween, { marginTop: 4, marginBottom: 14 }]}>
             <Text style={[styles.sub, { marginBottom: 0 }]}>Nieuw spel</Text>
