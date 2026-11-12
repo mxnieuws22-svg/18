@@ -11,12 +11,13 @@ interface Props {
   username: string | null;
   accountsEnabled: boolean;
   onAccount: () => void;
+  onCamera: () => void;
   hasSavedGame: boolean;
   onStart: (cfg: GameConfig) => void;
   onResume: () => void;
 }
 
-export default function SetupScreen({ username, accountsEnabled, onAccount, hasSavedGame, onStart, onResume }: Props) {
+export default function SetupScreen({ username, accountsEnabled, onAccount, onCamera, hasSavedGame, onStart, onResume }: Props) {
   const [startScore, setStartScore] = useState<StartScore>(501);
   const [doubleOut, setDoubleOut] = useState(true);
   const [names, setNames] = useState<string[]>(["", ""]);
@@ -103,6 +104,7 @@ export default function SetupScreen({ username, accountsEnabled, onAccount, hasS
 
           {username && <Text style={styles.muted}>Speler 1 telt mee voor jouw statistieken.</Text>}
           <Button label={`Start ${startScore}`} onPress={start} style={{ marginTop: 22 }} />
+          <Button label="📷 Camera instellen (bèta)" variant="ghost" onPress={onCamera} style={{ marginTop: 12 }} />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>

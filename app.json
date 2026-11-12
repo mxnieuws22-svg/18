@@ -7,7 +7,8 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {}
     },
     "android": {
       "adaptiveIcon": {
@@ -27,6 +28,16 @@
       "backgroundColor": "#0A0E13",
       "themeColor": "#0A0E13"
     },
-    "backgroundColor": "#0A0E13"
+    "backgroundColor": "#0A0E13",
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Dartscore gebruikt de camera om je dartbord te bekijken. Beelden blijven op je toestel.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ]
+    ]
   }
 }

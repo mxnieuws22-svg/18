@@ -37,3 +37,9 @@ Zonder configuratie werkt de app volledig offline. Met accounts bewaar je afgero
    en `reset-password.html` (Reset password). De app gebruikt **codes** in de mail, geen links.
 3. Zet `EXPO_PUBLIC_SUPABASE_URL` en `EXPO_PUBLIC_SUPABASE_ANON_KEY` in `.env.local` (lokaal) en in Vercel -> Environment Variables.
 4. Opnieuw starten / deployen.
+
+## Fase 2: camera
+Op het startscherm: **📷 Camera instellen (bèta)**. Instructies voor plaatsing, een live beeld met hulpcirkel,
+een referentiefoto van het lege bord en een foto na de worp. Foto's blijven in het geheugen van het toestel
+(niet opgeslagen, niet geüpload). De herkenning zelf volgt in fase 3 (`src/vision/types.ts` bevat de interface).
+Op het web werkt de camera alleen via https (Vercel) of op localhost.

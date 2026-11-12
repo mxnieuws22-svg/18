@@ -7,13 +7,15 @@ import GameScreen from "./src/screens/GameScreen";
 import AuthScreen from "./src/screens/AuthScreen";
 import AccountScreen from "./src/screens/AccountScreen";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
+import CameraScreen from "./src/screens/CameraScreen";
+import type { Shots } from "./src/vision/types";
 import { createGame, type GameConfig, type GameState } from "./src/engine/game";
 import { loadGame, loadGuest, saveGame, saveGuest } from "./src/state/storage";
 import { AuthProvider, useAuth } from "./src/state/auth";
 import { enqueueFinished, flushOutbox, isFinished } from "./src/state/sync";
 import { colors } from "./src/theme";
 
-type Screen = "main" | "auth" | "account";
+type Screen = "main" | "auth" | "account" | "camera";
 
 function Root() {
   const auth = useAuth();
@@ -23,6 +25,7 @@ function Root() {
   const [screen, setScreen] = useState<Screen>("main");
   const [authMode, setAuthMode] = useState<"login" | "signup">("login");
   const [guest, setGuest] = useState(false);
+  const [shots, setShots] = useState<Shots>({}); // camera photos: session memory only, never uploaded
   const userId = auth.user?.id ?? null;
 
   useEffect(() => {
@@ -67,6 +70,7 @@ function Root() {
   if (screen === "auth") {
     return <AuthScreen initialMode={authMode} onDone={() => setScreen("main")} onBack={() => setScreen("main")} />;
   }
+  if (screen === "camera") return <CameraScreen shots={shots} onChange={setShots} onClose={() => setScreen("main")} />;
   if (screen === "account" && auth.user) return <AccountScreen onBack={() => setScreen("main")} />;
 
   // Visitors land here first: create an account, log in, or (offline-friendly) continue as guest.
@@ -84,6 +88,7 @@ function Root() {
     <SetupScreen
       username={auth.username}
       accountsEnabled={auth.configured}
+      onCamera={() => setScreen("camera")}
       onAccount={() => { if (auth.user) setScreen("account"); else { setAuthMode("login"); setScreen("auth"); } }}
       hasSavedGame={!!saved && saved.turns.length > 0 && !isFinished(saved)}
       onStart={(cfg: GameConfig) => update(createGame(cfg))}
