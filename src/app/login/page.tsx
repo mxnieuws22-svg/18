@@ -11,7 +11,10 @@ async function login(formData: FormData) {
     email: String(formData.get("email")),
     password: String(formData.get("password")),
   });
-  if (error) redirect(`/login?error=1&next=${encodeURIComponent(safeNext)}`);
+  if (error) {
+    const code = error.code === "email_not_confirmed" ? "unconfirmed" : "invalid";
+    redirect(`/login?error=${code}&next=${encodeURIComponent(safeNext)}`);
+  }
   redirect(safeNext);
 }
 
@@ -25,7 +28,9 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
         <div><label className="label">E-mail</label><input name="email" type="email" required autoComplete="email" className="input" /></div>
         <div><label className="label">Wachtwoord</label><input name="password" type="password" required autoComplete="current-password" className="input" /></div>
         {check && <p className="rounded-xl border border-accent/30 bg-accent/10 p-3 text-sm text-accent-soft">Account aangemaakt. Controleer je e-mail (ook de spammap) en klik op de bevestigingslink. Daarna kun je inloggen.</p>}
-        {error && <p className="text-sm text-red-400">Ongeldig e-mailadres of wachtwoord.</p>}
+        {error === "unconfirmed" && <p className="text-sm text-red-400">Je e-mailadres is nog niet bevestigd. Klik op de link in de bevestigingsmail.</p>}
+        {error === "link" && <p className="text-sm text-amber-300">De bevestigingslink kon niet worden gebruikt (verlopen of al gebruikt). Je e-mail is mogelijk al bevestigd: probeer in te loggen. Lukt dat niet, gebruik “Wachtwoord vergeten”.</p>}
+        {error && error !== "unconfirmed" && error !== "link" && <p className="text-sm text-red-400">Ongeldig e-mailadres of wachtwoord.</p>}
         <button className="btn-primary w-full">Inloggen</button>
         <p className="text-center text-xs"><Link href="/forgot-password" className="text-zinc-500 hover:text-accent">Wachtwoord vergeten?</Link></p>
       </form>

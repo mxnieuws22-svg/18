@@ -3,7 +3,7 @@
     <h1 style="margin:0 0 16px;font-size:24px;color:#ffffff;">Fannova<span style="color:#c9a2ff;">.</span></h1>
     <h2 style="margin:0 0 12px;font-size:18px;color:#ffffff;">Bevestig je e-mailadres</h2>
     <p style="line-height:1.6;color:#a1a1aa;">Bedankt voor je aanmelding. Klik op de knop hieronder om je account te activeren. Fannova is uitsluitend voor volwassenen (18+).</p>
-    <p style="margin:28px 0;"><a href="{{ .ConfirmationURL }}" style="background:#c9a2ff;color:#08080a;text-decoration:none;padding:12px 24px;border-radius:999px;font-weight:bold;">E-mailadres bevestigen</a></p>
+    <p style="margin:28px 0;"><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next=/account" style="background:#c9a2ff;color:#08080a;text-decoration:none;padding:12px 24px;border-radius:999px;font-weight:bold;">E-mailadres bevestigen</a></p>
     <p style="font-size:12px;color:#71717a;">Heb je dit niet aangevraagd? Dan kun je deze e-mail negeren.</p>
   </div>
 </div>
