@@ -19,7 +19,13 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "output": "single",
+      "name": "Darts AutoScore",
+      "shortName": "Darts",
+      "backgroundColor": "#0A0E13",
+      "themeColor": "#0A0E13"
     },
     "backgroundColor": "#0A0E13"
   }
