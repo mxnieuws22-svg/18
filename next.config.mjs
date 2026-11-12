@@ -4,7 +4,12 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/:path*",
+        // Camera/microphone are needed for the ID check only.
+        source: "/account/verify",
+        headers: [{ key: "Permissions-Policy", value: "camera=*, microphone=*, geolocation=()" }],
+      },
+      {
+        source: "/((?!account/verify).*)",
         headers: [
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },

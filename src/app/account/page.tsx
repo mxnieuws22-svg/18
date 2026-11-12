@@ -24,13 +24,6 @@ async function saveProfile(formData: FormData) {
   revalidatePath("/account");
 }
 
-async function requestVerification() {
-  "use server";
-  const supabase = await createClient();
-  await supabase.rpc("request_verification");
-  revalidatePath("/account");
-}
-
 async function deleteAccount(formData: FormData) {
   "use server";
   const supabase = await createClient();
@@ -50,8 +43,8 @@ async function deleteAccount(formData: FormData) {
 }
 
 const STATUS_COPY: Record<string, string> = {
-  unverified: "Dien je profiel in voor beoordeling om zichtbaar te worden.",
-  pending: "In beoordeling. Je verschijnt in Ontdekken zodra je bent goedgekeurd.",
+  unverified: "Start de identiteitscontrole om zichtbaar te kunnen worden.",
+  pending: "Identiteit gecontroleerd. Ons team beoordeelt je profiel; je verschijnt in Ontdekken zodra je bent goedgekeurd.",
   verified: "Geverifieerd — je profiel is live.",
   rejected: "Je aanvraag is niet goedgekeurd. Pas je profiel aan en vraag opnieuw aan.",
 };
@@ -81,7 +74,7 @@ export default async function Account({ searchParams }: { searchParams: Promise<
             <p className="text-sm text-zinc-400">{STATUS_COPY[profile.verification_status]}</p>
           </div>
           {(profile.verification_status === "unverified" || profile.verification_status === "rejected") && (
-            <form action={requestVerification}><button className="btn-primary">Aanvragen</button></form>
+            <a href="/account/verify" className="btn-primary">Identiteit controleren</a>
           )}
         </div>
       )}
