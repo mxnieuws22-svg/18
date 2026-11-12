@@ -14,8 +14,19 @@ export interface Turn {
 }
 
 export interface GameState {
+  /** Client-generated id: makes cloud uploads idempotent. */
+  id: string;
+  startedAt: string; // ISO date
   config: GameConfig;
   turns: Turn[];
+}
+
+/** RFC4122-style v4 id. Not security-sensitive; only used as a row key. */
+export function newId(): string {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+  });
 }
 
 export interface TurnResult {
@@ -40,7 +51,7 @@ export interface Evaluation {
 export const MAX_PLAYERS = 4;
 
 export function createGame(config: GameConfig): GameState {
-  return { config, turns: [] };
+  return { id: newId(), startedAt: new Date().toISOString(), config, turns: [] };
 }
 
 /** Replay all turns from scratch. Single source of truth: makes undo/edit trivial and safe. */

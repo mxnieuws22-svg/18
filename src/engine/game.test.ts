@@ -98,3 +98,15 @@ test("checkout suggestions", () => {
     if (canCheckout(n)) assert.ok(suggestCheckout(n, true), `no checkout for ${n}`);
   }
 });
+
+import { summarize } from "./summary";
+test("summary for cloud stats", () => {
+  const s = play(cfg({ startScore: 301, players: ["A", "B"] }), 180, 60, 81, 45, [40, true]);
+  const a = summarize(s, 0);
+  assert.equal(a.won, true);
+  assert.equal(a.bestFinish, 40);
+  assert.equal(a.maximums, 1);
+  assert.equal(a.turns, 3);
+  assert.equal(a.points, 180 + 81 + 40);
+  assert.equal(summarize(s, 1).won, false);
+});

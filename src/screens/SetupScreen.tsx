@@ -8,12 +8,15 @@ import type { StartScore } from "../engine/rules";
 import { loadSetup, saveSetup } from "../state/storage";
 
 interface Props {
+  username: string | null;
+  accountsEnabled: boolean;
+  onAccount: () => void;
   hasSavedGame: boolean;
   onStart: (cfg: GameConfig) => void;
   onResume: () => void;
 }
 
-export default function SetupScreen({ hasSavedGame, onStart, onResume }: Props) {
+export default function SetupScreen({ username, accountsEnabled, onAccount, hasSavedGame, onStart, onResume }: Props) {
   const [startScore, setStartScore] = useState<StartScore>(501);
   const [doubleOut, setDoubleOut] = useState(true);
   const [names, setNames] = useState<string[]>(["", ""]);
@@ -32,7 +35,7 @@ export default function SetupScreen({ hasSavedGame, onStart, onResume }: Props) 
     setNames((cur) => Array.from({ length: n }, (_, i) => cur[i] ?? ""));
 
   function start() {
-    const players = names.map((n, i) => n.trim().slice(0, 16) || `Speler ${i + 1}`);
+    const players = names.map((n, i) => n.trim().slice(0, 16) || (i === 0 && username ? username : `Speler ${i + 1}`));
     const cfg: GameConfig = { startScore, doubleOut, players };
     saveSetup({ ...cfg, players: names });
     onStart(cfg);
@@ -42,8 +45,17 @@ export default function SetupScreen({ hasSavedGame, onStart, onResume }: Props) 
     <SafeAreaView style={styles.safe}>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-          <Text style={styles.logo}>🎯 Darts AutoScore</Text>
-          <Text style={styles.sub}>Nieuw spel</Text>
+          <View style={styles.rowBetween}>
+            <Text style={styles.logo}>🎯 Darts AutoScore</Text>
+          </View>
+          <View style={[styles.rowBetween, { marginTop: 4, marginBottom: 14 }]}>
+            <Text style={[styles.sub, { marginBottom: 0 }]}>Nieuw spel</Text>
+            {accountsEnabled && (
+              <Pressable onPress={onAccount} accessibilityRole="button" style={styles.account}>
+                <Text style={styles.accountText}>{username ? `👤 ${username}` : "Inloggen"}</Text>
+              </Pressable>
+            )}
+          </View>
 
           {hasSavedGame && (
             <Button label="Doorgaan met vorig spel" variant="ghost" onPress={onResume} style={{ marginBottom: 20 }} />
@@ -58,7 +70,7 @@ export default function SetupScreen({ hasSavedGame, onStart, onResume }: Props) 
             ))}
           </View>
 
-          <View style={styles.rowBetween}>
+          <View style={[styles.rowBetween, { marginTop: 22 }]}>
             <View style={{ flex: 1 }}>
               <Text style={styles.optTitle}>Dubbel uit</Text>
               <Text style={styles.muted}>Je moet eindigen met een dubbel of de Bull</Text>
@@ -81,7 +93,7 @@ export default function SetupScreen({ hasSavedGame, onStart, onResume }: Props) 
               key={i}
               value={n}
               onChangeText={(t) => setNames((cur) => cur.map((x, j) => (j === i ? t : x)))}
-              placeholder={`Speler ${i + 1}`}
+              placeholder={i === 0 && username ? username : `Speler ${i + 1}`}
               placeholderTextColor={colors.muted}
               maxLength={16}
               style={styles.input}
@@ -89,6 +101,7 @@ export default function SetupScreen({ hasSavedGame, onStart, onResume }: Props) 
             />
           ))}
 
+          {username && <Text style={styles.muted}>Speler 1 telt mee voor jouw statistieken.</Text>}
           <Button label={`Start ${startScore}`} onPress={start} style={{ marginTop: 22 }} />
         </ScrollView>
       </KeyboardAvoidingView>
@@ -106,7 +119,9 @@ const styles = StyleSheet.create({
   seg: { flex: 1, height: 46, borderRadius: radius.sm, alignItems: "center", justifyContent: "center" },
   segOn: { backgroundColor: colors.accent },
   segText: { color: colors.text, fontSize: 18, fontWeight: "800" },
-  rowBetween: { flexDirection: "row", alignItems: "center", marginTop: 22, gap: 12 },
+  rowBetween: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 },
+  account: { paddingHorizontal: 14, height: 36, borderRadius: radius.md, borderWidth: 1, borderColor: colors.accent, justifyContent: "center" },
+  accountText: { color: colors.accent, fontWeight: "700", fontSize: 14 },
   optTitle: { color: colors.text, fontSize: 17, fontWeight: "700" },
   muted: { color: colors.muted, fontSize: 13, marginTop: 2 },
   input: {

@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import type { GameState, GameConfig } from "../engine/game";
+import { newId, type GameState, type GameConfig } from "../engine/game";
 
 // Everything stays on the device; the app works fully offline.
 const GAME_KEY = "darts.game.v1";
@@ -17,7 +17,9 @@ export async function loadGame(): Promise<GameState | null> {
     const raw = await AsyncStorage.getItem(GAME_KEY);
     if (!raw) return null;
     const g = JSON.parse(raw) as GameState;
-    return g?.config?.players?.length && Array.isArray(g.turns) ? g : null;
+    if (!(g?.config?.players?.length && Array.isArray(g.turns))) return null;
+    // games saved by older versions have no id yet
+    return { ...g, id: g.id ?? newId(), startedAt: g.startedAt ?? new Date().toISOString() };
   } catch { return null; }
 }
 

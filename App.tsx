@@ -4,46 +4,81 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import SetupScreen from "./src/screens/SetupScreen";
 import GameScreen from "./src/screens/GameScreen";
+import AuthScreen from "./src/screens/AuthScreen";
+import AccountScreen from "./src/screens/AccountScreen";
 import { createGame, type GameConfig, type GameState } from "./src/engine/game";
 import { loadGame, saveGame } from "./src/state/storage";
+import { AuthProvider, useAuth } from "./src/state/auth";
+import { enqueueFinished, flushOutbox, isFinished } from "./src/state/sync";
 import { colors } from "./src/theme";
 
-export default function App() {
+type Screen = "main" | "auth" | "account";
+
+function Root() {
+  const auth = useAuth();
   const [ready, setReady] = useState(false);
   const [saved, setSaved] = useState<GameState | null>(null);
   const [game, setGame] = useState<GameState | null>(null);
+  const [screen, setScreen] = useState<Screen>("main");
+  const userId = auth.user?.id ?? null;
 
+  useEffect(() => { loadGame().then((g) => { setSaved(g); setReady(true); }); }, []);
+
+  // When logged in: upload anything queued, and any finished game still waiting on this device.
   useEffect(() => {
-    loadGame().then((g) => { setSaved(g); setReady(true); });
-  }, []);
+    if (!userId || !ready) return;
+    (async () => {
+      if (saved && isFinished(saved)) await enqueueFinished(userId, saved);
+      else await flushOutbox(userId);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId, ready]);
 
   const update = useCallback((g: GameState | null) => {
     setGame(g);
-    saveGame(g);          // autosave after every change: a crash never loses a game
+    saveGame(g); // autosave after every change
     if (g) setSaved(g);
   }, []);
 
-  if (!ready) {
+  /** A finished game is uploaded when the player leaves it (so undoing a win never reaches the cloud). */
+  const leave = useCallback((g: GameState | null) => {
+    if (g && userId && isFinished(g)) enqueueFinished(userId, g);
+  }, [userId]);
+
+  if (!ready || auth.loading) {
     return <View style={{ flex: 1, backgroundColor: colors.bg, justifyContent: "center" }}><ActivityIndicator color={colors.accent} /></View>;
   }
 
+  if (game) {
+    return (
+      <GameScreen
+        game={game}
+        onChange={update}
+        onRematch={() => { leave(game); update(createGame(game.config)); }}
+        onExit={() => { leave(game); setGame(null); if (isFinished(game)) { setSaved(null); saveGame(null); } }}
+      />
+    );
+  }
+  if (screen === "auth") return <AuthScreen onDone={() => setScreen("main")} onBack={() => setScreen("main")} />;
+  if (screen === "account" && auth.user) return <AccountScreen onBack={() => setScreen("main")} />;
+
+  return (
+    <SetupScreen
+      username={auth.username}
+      accountsEnabled={auth.configured}
+      onAccount={() => setScreen(auth.user ? "account" : "auth")}
+      hasSavedGame={!!saved && saved.turns.length > 0 && !isFinished(saved)}
+      onStart={(cfg: GameConfig) => update(createGame(cfg))}
+      onResume={() => saved && setGame(saved)}
+    />
+  );
+}
+
+export default function App() {
   return (
     <SafeAreaProvider>
       <StatusBar style="light" />
-      {game ? (
-        <GameScreen
-          game={game}
-          onChange={update}
-          onRematch={() => update(createGame(game.config))}
-          onExit={() => { setGame(null); }}
-        />
-      ) : (
-        <SetupScreen
-          hasSavedGame={!!saved && saved.turns.length > 0}
-          onStart={(cfg: GameConfig) => update(createGame(cfg))}
-          onResume={() => saved && setGame(saved)}
-        />
-      )}
+      <AuthProvider><Root /></AuthProvider>
     </SafeAreaProvider>
   );
 }
