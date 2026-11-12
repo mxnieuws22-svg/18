@@ -13,19 +13,11 @@ export interface Shots {
 }
 
 /**
- * Phase 3 plugs in here: compare the two photos and return where darts landed.
- * Kept as an interface now so a better detector (OpenCV, a trained model, ...) can be swapped in later
- * without touching the screens or the game rules.
+ * The detector seam: compare the empty-board photo with the photo after throwing and return the darts.
+ * `src/vision/detect.ts` is the first (classic computer-vision) implementation. A better detector
+ * (a trained model, a native OpenCV build, ...) can replace it without touching screens or game rules.
  */
-export interface DetectedDart {
-  /** Position in the 'after' photo, in pixels. */
-  x: number;
-  y: number;
-  confidence: number; // 0..1
-}
-export interface DartDetector {
-  detect(reference: Capture, after: Capture): Promise<DetectedDart[]>;
-}
+export type { FoundDart as DetectedDart, DetectionResult } from "./detect";
 
 export type CaptureWarning = string;
 

@@ -43,3 +43,18 @@ Op het startscherm: **📷 Camera instellen (bèta)**. Instructies voor plaatsin
 een referentiefoto van het lege bord en een foto na de worp. Foto's blijven in het geheugen van het toestel
 (niet opgeslagen, niet geüpload). De herkenning zelf volgt in fase 3 (`src/vision/types.ts` bevat de interface).
 Op het web werkt de camera alleen via https (Vercel) of op localhost.
+
+## Fase 3: dartbord herkennen en scores bepalen
+Camera instellen -> foto leeg bord -> foto na worp -> **Bord kalibreren** -> **Darts herkennen**.
+Alles draait op het toestel in TypeScript (geen native OpenCV nodig, dus ook in Expo Go).
+
+| Bestand | Taak |
+|---|---|
+| `src/vision/geometry.ts` | maten van het bord, positie (mm) -> score (T20, D16, ...) |
+| `src/vision/homography.ts`, `calibration.ts` | 4 punten -> perspectiefcorrectie beeld <-> bord |
+| `src/vision/boardFinder.ts` | voorstel voor middelpunt en grootte (rechte opstelling) |
+| `src/vision/refine.ts` | stelt de 4 punten af op de echte ringranden |
+| `src/vision/detect.ts` | verschil leeg/na-worp -> dartpunten -> scores |
+| `src/vision/synth.ts` | nagemaakt dartbord voor tests |
+
+Testen: `npm test` (31 tests, o.a. nagemaakte borden met kantelende camera, ruis en helderheidsverschil).

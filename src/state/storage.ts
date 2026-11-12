@@ -42,3 +42,16 @@ export async function loadGuest(): Promise<boolean> {
 export async function saveGuest(v: boolean): Promise<void> {
   try { if (v) await AsyncStorage.setItem(GUEST_KEY, "1"); else await AsyncStorage.removeItem(GUEST_KEY); } catch { /* ignore */ }
 }
+
+// Camera calibration (4 tapped points, normalised). Valid as long as the phone stays where it is.
+import type { Calibration } from "../vision/calibration";
+const CAL_KEY = "darts.calibration.v1";
+export async function loadCalibration(): Promise<Calibration | null> {
+  try {
+    const c = JSON.parse((await AsyncStorage.getItem(CAL_KEY)) ?? "null") as Calibration | null;
+    return c && Array.isArray(c.points) && c.points.length === 4 ? c : null;
+  } catch { return null; }
+}
+export async function saveCalibration(c: Calibration | null): Promise<void> {
+  try { if (c) await AsyncStorage.setItem(CAL_KEY, JSON.stringify(c)); else await AsyncStorage.removeItem(CAL_KEY); } catch { /* ignore */ }
+}

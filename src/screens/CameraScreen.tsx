@@ -15,6 +15,10 @@ type Step =
 
 interface Props {
   shots: Shots;
+  calibrated: boolean;
+  initialStep?: "intro" | "overview";
+  onCalibrate: () => void;
+  onAnalyze: () => void;
   onChange: (s: Shots) => void;
   onClose: () => void;
 }
@@ -27,9 +31,9 @@ const TIPS: Array<[string, string]> = [
   ["5", "Maak eerst een foto van het lege bord (referentie). Gooi daarna je darts en maak een nieuwe foto vanaf dezelfde plek."],
 ];
 
-export default function CameraScreen({ shots, onChange, onClose }: Props) {
+export default function CameraScreen({ shots, calibrated, initialStep = "intro", onCalibrate, onAnalyze, onChange, onClose }: Props) {
   const [permission, requestPermission] = useCameraPermissions();
-  const [step, setStep] = useState<Step>({ kind: "intro" });
+  const [step, setStep] = useState<Step>({ kind: initialStep });
   const [facing, setFacing] = useState<"back" | "front">("back");
   const [ready, setReady] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -168,6 +172,9 @@ export default function CameraScreen({ shots, onChange, onClose }: Props) {
         {!shots.reference && <Button label="Foto van het lege bord maken" onPress={() => startLive("reference")} />}
         {shots.reference && <Button label={shots.after ? "Nieuwe foto na worp" : "Foto na worp maken"} onPress={() => startLive("after")} />}
         {shots.reference && <Button label="Referentie opnieuw maken" variant="ghost" onPress={() => startLive("reference")} />}
+        {shots.reference && <Button label={calibrated ? "Bord opnieuw kalibreren" : "Bord kalibreren (stap 3)"} variant={calibrated ? "ghost" : "primary"} onPress={onCalibrate} />}
+        {shots.reference && shots.after && calibrated && <Button label="Darts herkennen" onPress={onAnalyze} />}
+        {shots.reference && shots.after && !calibrated && <Text style={styles.muted}>Kalibreer eerst het bord om de darts te herkennen.</Text>}
         <Button label="Foto’s wissen" variant="danger" onPress={() => { onChange({}); setStep({ kind: "intro" }); }} />
         <Button label="Klaar" variant="ghost" onPress={onClose} />
       </View>
