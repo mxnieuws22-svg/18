@@ -1,0 +1,8 @@
+{
+  "name": "lwprints3d-website",
+  "private": true,
+  "description": "Website lwprints3d.nl (statisch + offerte-functie)",
+  "dependencies": {
+    "nodemailer": "^10.6.0"
+  }
+}

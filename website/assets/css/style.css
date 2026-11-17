@@ -1,0 +1,152 @@
+/* LWPRINTS3D – huisstijl: zwart #111111, wit #FFFFFF, blauw #1F8BFF */
+:root {
+  --zwart: #111111;
+  --zwart-2: #1b1b1f;
+  --wit: #ffffff;
+  --blauw: #1f8bff;
+  --blauw-donker: #0a6fe0;
+  --grijs: #6b7280;
+  --lichtgrijs: #f3f4f6;
+  --rand: #e5e7eb;
+  --radius: 14px;
+  --max: 1160px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--font); color: var(--zwart); background: var(--wit); line-height: 1.6; font-size: 17px; }
+img, svg { max-width: 100%; display: block; }
+a { color: var(--blauw-donker); }
+h1, h2, h3 { line-height: 1.15; margin: 0 0 .5em; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.1rem, 4.6vw, 3.6rem); }
+h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0 0 1em; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+.muted { color: var(--grijs); }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 12px; top: 12px; background: var(--wit); padding: 8px 12px; z-index: 99; }
+
+/* Knoppen */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 999px;
+  font-weight: 700; text-decoration: none; border: 2px solid transparent; cursor: pointer; font-size: 1rem; transition: background .15s, color .15s, border-color .15s; }
+.btn-blauw { background: var(--blauw); color: var(--wit); }
+.btn-blauw:hover { background: var(--blauw-donker); }
+.btn-rand { border-color: currentColor; color: inherit; background: transparent; }
+.btn-rand:hover { background: rgba(127,127,127,.12); }
+
+/* Header */
+.site-header { background: var(--zwart); color: var(--wit); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #222; }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 16px; }
+.logo img { height: 46px; width: auto; }
+.nav { display: flex; align-items: center; gap: 4px; }
+.nav a { color: #d1d5db; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; font-size: .95rem; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--wit); background: #222; }
+.nav .btn { margin-left: 8px; padding: 10px 18px; color: var(--wit); }
+.nav-toggle { display: none; background: none; border: 0; color: var(--wit); font-size: 1.8rem; cursor: pointer; padding: 6px 10px; }
+
+@media (max-width: 960px) {
+  .nav-toggle { display: block; }
+  .nav { display: none; position: absolute; top: 76px; left: 0; right: 0; background: var(--zwart); flex-direction: column; align-items: stretch;
+    padding: 12px 24px 20px; border-bottom: 1px solid #222; }
+  .nav.open { display: flex; }
+  .nav a { padding: 12px; }
+  .nav .btn { margin: 8px 0 0; }
+}
+
+/* Hero */
+.hero { background: var(--zwart); color: var(--wit); position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; opacity: .14;
+  background-image: linear-gradient(#2b3a52 1px, transparent 1px), linear-gradient(90deg, #2b3a52 1px, transparent 1px); background-size: 40px 40px; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; padding-top: 80px; padding-bottom: 88px; }
+.hero .kicker { color: var(--blauw); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: .85rem; margin-bottom: 14px; }
+.hero p.lead { font-size: 1.2rem; color: #d1d5db; max-width: 34em; }
+.hero .acties { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.hero .beeld img { width: 100%; max-width: 380px; margin-left: auto; }
+.hero.klein .wrap { grid-template-columns: 1fr; padding-top: 56px; padding-bottom: 56px; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .hero .beeld { display: none; } }
+
+/* Secties */
+section { padding: 80px 0; }
+section.grijs { background: var(--lichtgrijs); }
+.sectie-kop { max-width: 720px; margin-bottom: 40px; }
+.sectie-kop .kicker { color: var(--blauw-donker); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: .8rem; }
+
+.grid { display: grid; gap: 22px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 960px) { .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+
+.kaart { background: var(--wit); border: 1px solid var(--rand); border-radius: var(--radius); padding: 28px; }
+.kaart .icoon { width: 56px; height: 56px; border-radius: 12px; background: var(--zwart); display: grid; place-items: center; margin-bottom: 18px; }
+.kaart .icoon svg { width: 30px; height: 30px; }
+.kaart h3 { margin-bottom: .4em; }
+.kaart p:last-child { margin-bottom: 0; }
+
+/* Stappen */
+.stappen { counter-reset: stap; }
+.stap { position: relative; padding-left: 64px; }
+.stap::before { counter-increment: stap; content: counter(stap); position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--blauw); color: var(--wit); font-weight: 800; display: grid; place-items: center; font-size: 1.1rem; }
+
+/* Producten */
+.product { display: flex; flex-direction: column; }
+.product .beeld { background: var(--zwart); border-radius: 10px; aspect-ratio: 4 / 3; display: grid; place-items: center; margin-bottom: 18px; }
+.product .beeld svg { width: 42%; height: auto; }
+.product .prijs { font-size: 1.35rem; font-weight: 800; margin: auto 0 14px; }
+.product .prijs small { font-size: .85rem; font-weight: 600; color: var(--grijs); }
+
+/* Tabellen */
+.tabel { width: 100%; border-collapse: collapse; background: var(--wit); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--rand); }
+.tabel th, .tabel td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--rand); }
+.tabel th { background: var(--zwart); color: var(--wit); font-size: .9rem; letter-spacing: .02em; }
+.tabel td:last-child, .tabel th:last-child { text-align: right; white-space: nowrap; }
+.tabel tr:last-child td { border-bottom: 0; }
+
+/* Materialen */
+.materiaal { border-top: 4px solid var(--blauw); }
+
+/* CTA-blok */
+.cta { background: var(--zwart); color: var(--wit); border-radius: 20px; padding: 48px; display: flex; gap: 24px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.cta p { color: #d1d5db; margin: 0; }
+
+/* FAQ */
+details { background: var(--wit); border: 1px solid var(--rand); border-radius: 12px; padding: 18px 22px; margin-bottom: 12px; }
+summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+summary::after { content: "+"; color: var(--blauw); font-size: 1.4rem; line-height: 1; }
+details[open] summary::after { content: "–"; }
+details p { margin: 12px 0 0; }
+
+/* Formulier */
+.formulier { background: var(--wit); border: 1px solid var(--rand); border-radius: 20px; padding: 36px; }
+.veld { margin-bottom: 18px; }
+.veld label { display: block; font-weight: 700; margin-bottom: 6px; font-size: .95rem; }
+.veld .hint { font-weight: 400; color: var(--grijs); font-size: .85rem; }
+.veld input, .veld select, .veld textarea { width: 100%; font: inherit; padding: 12px 14px; border: 1.5px solid #d1d5db; border-radius: 10px; background: var(--wit); }
+.veld input:focus, .veld select:focus, .veld textarea:focus { outline: none; border-color: var(--blauw); box-shadow: 0 0 0 3px rgba(31,139,255,.2); }
+.veld textarea { min-height: 140px; resize: vertical; }
+.rij { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 620px) { .rij { grid-template-columns: 1fr; } .formulier { padding: 22px; } .cta { padding: 30px; } }
+.verplicht { color: var(--blauw-donker); }
+.hp { position: absolute; left: -9999px; }
+.melding { padding: 16px 18px; border-radius: 12px; margin-top: 16px; display: none; }
+.melding.ok { display: block; background: #e8f5e9; color: #1b5e20; }
+.melding.fout { display: block; background: #fdecea; color: #8a1c13; }
+
+/* Footer */
+.site-footer { background: var(--zwart); color: #9ca3af; padding: 56px 0 28px; font-size: .95rem; }
+.site-footer .kolommen { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; }
+.site-footer h3 { color: var(--wit); font-size: 1rem; margin-bottom: 12px; }
+.site-footer a { color: #d1d5db; text-decoration: none; }
+.site-footer a:hover { color: var(--wit); }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin-bottom: 8px; }
+.site-footer .onder { border-top: 1px solid #262626; margin-top: 40px; padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .85rem; }
+.site-footer .logo img { height: 40px; margin-bottom: 14px; }
+@media (max-width: 760px) { .site-footer .kolommen { grid-template-columns: 1fr; } }
+
+.tekst { max-width: 760px; }
+.tekst h2 { font-size: 1.5rem; margin-top: 1.6em; }
