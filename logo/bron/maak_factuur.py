@@ -102,7 +102,7 @@ fixed(tot, [Cm(4.6), Cm(4.6)])
 doc.add_paragraph()
 text(doc, "Vrijgesteld van btw op grond van de kleineondernemersregeling (KOR).", 9.5, color=GRIJS, after=10)
 text(doc, "Betaling", 11, True, after=2)
-text(doc, "Graag het totaalbedrag binnen 14 dagen overmaken naar IBAN NL11 RABO 0167 2853 78 t.n.v. [naam rekeninghouder], "
+text(doc, "Graag het totaalbedrag binnen 14 dagen overmaken naar IBAN NL11 RABO 0167 2853 78 t.n.v. LWPRINTS, "
           "onder vermelding van het factuurnummer.", after=10)
 text(doc, "Bedankt voor je opdracht! Op deze factuur zijn de algemene voorwaarden van LWPRINTS3D van toepassing "
           "(lwprints3d.nl/algemene-voorwaarden).", 9.5, after=10)
