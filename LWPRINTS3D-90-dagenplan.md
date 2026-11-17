@@ -1,4 +1,6 @@
-# LWPRINTS: 90-dagenplan
+# LWPRINTS3D: 90-dagenplan
+
+LWPRINTS3D is het 3D-printonderdeel van LWPRINTS (kleding bedrukken), onder dezelfde KVK-inschrijving.
 
 Periode: 16 november 2026 tot en met 14 februari 2027 · Regio Oss · Printer: Anycubic Kobra S1
 
@@ -20,6 +22,31 @@ Alle bedragen hieronder zijn **schattingen** om mee te rekenen, geen marktprijze
 **Bijdrage per verkoop** = verkoopprijs − (materiaal + machine) × 1,1 − verpakking. Je eigen tijd, verzendkosten en eventuele platformkosten zitten daar **niet** in.
 
 Printtijden en gewichten hangen sterk af van het ontwerp en je instellingen. Weeg en klok je eerste prints en pas de tabel aan.
+
+---
+
+## 0. Twee onderdelen onder één bedrijf
+
+| | LWPRINTS | LWPRINTS3D |
+|---|---|---|
+| Wat | Kleding bedrukken | 3D-printservice en eigen producten |
+| Logo | T-shirtlogo (zwart-wit) | Printkop-logo (zwart-wit met blauw) |
+| KVK | Dezelfde inschrijving | Dezelfde inschrijving |
+
+### Regel bij de KVK
+- Controleer of 3D-printen bij je activiteiten staat. Zo niet: wijziging online doorgeven.
+- Laat "LWPRINTS3D" als extra handelsnaam registreren als je die naam naar buiten gebruikt. Bekijk bij de KVK of dat kosten heeft.
+
+### Let op
+- **KOR:** de omzet van kleding en 3D telt samen voor de grens van € 20.000 per jaar.
+- **Verzekering:** laat beide activiteiten dekken.
+- **Website:** één site (lwprints.nl) met een 3D-gedeelte. Sterker voor Google en goedkoper dan twee sites.
+
+### Het grootste voordeel: dezelfde klanten
+Bedrijven die werkkleding met logo bestellen (garages, installateurs, monteurs) zijn ook je 3D-doelgroep. Verkoop ze samen:
+- **Pakket "huisstijl compleet":** werkkleding met logo plus sleutelhangers, naambordjes of QR-standaard in dezelfde stijl.
+- **Bij elke kledingbestelling** een sleutelhanger met hun logo als voorbeeld meegeven.
+- **Op kledingoffertes** een regel: "Ook sleutelhangers en naambordjes met je logo? Vraag ernaar."
 
 ---
 
@@ -190,7 +217,7 @@ Prijzen zijn mijn **aanbevolen startprijzen**. Zolang je onder de KOR valt, reke
 ## 3. Marketingstrategie
 
 ### Positionering
-> **LWPRINTS: 3D-printwerk uit Oss. Van idee tot onderdeel, snel en op maat.**
+> **LWPRINTS3D: 3D-printwerk uit Oss. Van idee tot onderdeel, snel en op maat.**
 
 Je onderscheidt je van grote online printdiensten met drie dingen: **lokaal** (langskomen en afhalen kan), **meedenken** (jij tekent het na), en **snel** (dagen, geen weken).
 
@@ -209,7 +236,7 @@ Je onderscheidt je van grote online printdiensten met drie dingen: **lokaal** (l
 - **Achter de schermen:** je printer, materiaalkeuze, een mislukte print.
 
 ### Tien berichten om mee te starten
-1. "Hoi, wij zijn LWPRINTS. 3D-printservice uit Oss. Heb je een idee, een kapot onderdeel of een tekening? Wij printen het."
+1. "Hoi, wij zijn LWPRINTS3D. 3D-printservice uit Oss. Heb je een idee, een kapot onderdeel of een tekening? Wij printen het."
 2. Timelapse van een telefoonstandaard met naam.
 3. Voor en na: rommelige lade tegenover lade met indeling op maat.
 4. "Dit dopje kostte nieuw € 45, als het nog leverbaar was. Nagemaakt voor € 29."
@@ -227,7 +254,7 @@ Je onderscheidt je van grote online printdiensten met drie dingen: **lokaal** (l
 - Een print die mislukt, en wat je ervan leert.
 
 ### Advertentietekst (voor later)
-> **Onderdeel kapot of idee in je hoofd?** LWPRINTS uit Oss tekent en print het voor je. Maatwerk vanaf € 15, klaar binnen 5 werkdagen. Vraag gratis een offerte aan.
+> **Onderdeel kapot of idee in je hoofd?** LWPRINTS3D uit Oss tekent en print het voor je. Maatwerk vanaf € 15, klaar binnen 5 werkdagen. Vraag gratis een offerte aan.
 
 ### Lokale vindbaarheid
 - Gebruik op elke pagina de plaatsnaam: "3D printservice Oss", "3D printen Uden", "prototype laten maken Veghel".
@@ -239,6 +266,9 @@ Je onderscheidt je van grote online printdiensten met drie dingen: **lokaal** (l
 ## 4. Klantenwerving zakelijk, regio Oss
 
 Ik noem geen bedrijfsnamen, want die zou ik moeten verzinnen. Stel zelf een lijst samen.
+
+### Begin bij je eigen kledingklanten
+Zodra LWPRINTS kledingklanten heeft, zijn dat je eerste 3D-adressen. Zij kennen je al.
 
 ### Zo bouw je je lijst
 1. Zoek in Google Maps op "garage", "machinebouw", "interieurbouw", "installatiebedrijf" en "metaalbewerking" in Oss, Uden, Veghel en Nijmegen.
@@ -266,14 +296,14 @@ Ik noem geen bedrijfsnamen, want die zou ik moeten verzinnen. Stel zelf een lijs
 >
 > Beste [naam],
 >
-> Ik ben [jouw naam] van LWPRINTS, een 3D-printservice in Oss. Ik maak voor bedrijven in de regio onderdelen en hulpstukken op maat: boormallen, houders, afdekkappen en prototypes.
+> Ik ben [jouw naam] van LWPRINTS3D, een 3D-printservice in Oss. Ik maak voor bedrijven in de regio onderdelen en hulpstukken op maat: boormallen, houders, afdekkappen en prototypes.
 >
 > Ik zag dat jullie [wat ze doen]. Een [concreet voorbeeld, bijvoorbeeld boormal voor scharnieren] kan ik binnen een week leveren, meestal voor € 40 tot € 80.
 >
 > Mag ik volgende week 10 minuten langskomen met een paar voorbeelden? De eerste proefopdracht is zonder risico: bevalt het niet, dan stuur ik geen factuur.
 >
 > Met vriendelijke groet,
-> [naam] · LWPRINTS · [telefoon] · [website]
+> [naam] · LWPRINTS3D · [telefoon] · [website]
 
 ### Opvolgbericht (na 5 werkdagen)
 
@@ -294,14 +324,14 @@ Ik noem geen bedrijfsnamen, want die zou ik moeten verzinnen. Stel zelf een lijs
 
 ## 5. Website-indeling met webteksten
 
-Stijl: zwart en wit, oranje voor knoppen. Elke pagina heeft één knop: **Offerte aanvragen**.
+Stijl: zwart en wit, blauw (#1F8BFF) voor knoppen. Logo en huisstijl staan in de map `logo/`. Elke pagina heeft één knop: **Offerte aanvragen**.
 
 ### Pagina's
 1. Home
 2. Diensten
 3. Producten
 4. Zakelijk
-5. Over LWPRINTS
+5. Over LWPRINTS3D (en een link naar het kledinggedeelte van LWPRINTS)
 6. Offerte aanvragen
 7. Veelgestelde vragen
 8. Contact
@@ -355,14 +385,14 @@ Per product: foto, korte omschrijving, prijs en knop "Bestellen of aanpassen". G
 ### Zakelijk
 
 **Kop:** Hulpstukken en onderdelen voor je bedrijf, binnen een week
-**Intro:** Een mal die je monteur elke dag tijd scheelt. Een afdekkap die niet meer leverbaar is. Een prototype om aan je klant te laten zien. LWPRINTS maakt het, in de regio en zonder minimale afname.
+**Intro:** Een mal die je monteur elke dag tijd scheelt. Een afdekkap die niet meer leverbaar is. Een prototype om aan je klant te laten zien. LWPRINTS3D maakt het, in de regio en zonder minimale afname.
 
 - **Boor- en montagemallen**
 - **Houders en organizers voor werkplaats en bus**
 - **Prototypes en proefmodellen**
 - **Kleine series en nabestellingen**
 
-**Waarom LWPRINTS**
+**Waarom LWPRINTS3D**
 - Eén aanspreekpunt, in de buurt.
 - Offerte binnen één werkdag.
 - Je ontwerp blijft van jou en wordt bewaard voor nabestellingen.
@@ -370,9 +400,9 @@ Per product: foto, korte omschrijving, prijs en knop "Bestellen of aanpassen". G
 
 **Knop:** Plan een kennismaking
 
-### Over LWPRINTS
+### Over LWPRINTS3D
 
-> LWPRINTS is een 3D-printservice uit Oss. Ik ben [naam] en ik maak onderdelen en producten op maat voor bedrijven en particulieren in de regio.
+> LWPRINTS3D is de 3D-printservice van LWPRINTS uit Oss. Naast het bedrukken van kleding print ik onderdelen en producten in 3D. Ik ben [naam] en ik maak onderdelen en producten op maat voor bedrijven en particulieren in de regio.
 >
 > Het begon met [jouw verhaal in één of twee zinnen]. Inmiddels print ik van reserveonderdelen tot hulpstukken voor werkplaatsen.
 >
@@ -417,10 +447,10 @@ Naam, e-mail, telefoon en WhatsApp, werkgebied (Oss, Uden, Veghel, Nijmegen en o
 
 | Pagina | Titel |
 |---|---|
-| Home | 3D printservice Oss · Onderdelen en prototypes op maat · LWPRINTS |
-| Diensten | 3D printen laten doen in Oss, Uden en Veghel · LWPRINTS |
-| Zakelijk | Mallen, prototypes en kleine series · 3D print voor bedrijven · LWPRINTS |
-| Producten | Gereedschapshouders en organizers op maat · LWPRINTS |
+| Home | 3D printservice Oss · Onderdelen en prototypes op maat · LWPRINTS3D |
+| Diensten | 3D printen laten doen in Oss, Uden en Veghel · LWPRINTS3D |
+| Zakelijk | Mallen, prototypes en kleine series · 3D print voor bedrijven · LWPRINTS3D |
+| Producten | Gereedschapshouders en organizers op maat · LWPRINTS3D |
 
 ---
 
@@ -466,10 +496,10 @@ Dit is een **rekenmodel, geen voorspelling**. Het laat zien welke aantallen je n
 - **Je eigen tijd is de krapte.** Tekenen, contact en inpakken kosten meer uren dan het printen.
 
 ### Btw en de KOR
-- Met de **kleineondernemersregeling** reken je geen btw en doe je geen btw-aangifte, zolang je omzet onder **€ 20.000 per kalenderjaar** blijft.
+- Met de **kleineondernemersregeling** reken je geen btw en doe je geen btw-aangifte, zolang je omzet onder **€ 20.000 per kalenderjaar** blijft. **Dat is de omzet van kleding en 3D samen.**
 - Nadeel: je krijgt de btw op je inkopen niet terug.
 - **Bij het doel van € 1.500 winst kom je rond € 27.000 omzet per jaar uit.** Dan vervalt de KOR direct en moet je btw rekenen. Voor bedrijven maakt dat niets uit (zij trekken de btw af). Voor particulieren worden je prijzen 21% hoger of je marge lager.
-- Beslis hierover met een boekhouder zodra je ± € 1.200 omzet per maand haalt.
+- Beslis hierover met een boekhouder zodra kleding en 3D samen ± € 1.200 omzet per maand halen.
 
 ### Inkomstenbelasting
 - **Mkb-winstvrijstelling:** 12,7% van je winst is vrijgesteld (cijfer voor 2026 volgens meerdere bronnen).

@@ -1,4 +1,5 @@
-"""Genereert de LWPRINTS-logo's (SVG) en de sleutelhanger (STL).
+"""ARCHIEF: de niet gekozen oranje logo-richtingen. Het actieve logo staat in maak_logo_3d.py.
+Dit bestand levert ook de blokletters (LETTERS) die maak_logo_3d.py gebruikt.
 
 Eigen blokletters, geen lettertype: uniek, geen licentie nodig en goed te printen
 (streepdikte 22 eenheden op een letterhoogte van 100).
@@ -176,8 +177,8 @@ def keychain_files():
     plate, text, accent = keychain_shapes()
     k = KH
     allt = unary_union([text, accent])
-    save("sleutelhanger/sleutelhanger-voorbeeld-groen.svg", svg(k["w"], k["h"], [(plate, ZWART), (allt, "#2E9E4F")], unit="mm"))
-    save("sleutelhanger/sleutelhanger-voorbeeld-oranje.svg", svg(k["w"], k["h"], [(plate, ZWART), (text, WIT), (accent, ORANJE)], unit="mm"))
+    save("archief/logo-1-oranje/sleutelhanger-voorbeeld-groen.svg", svg(k["w"], k["h"], [(plate, ZWART), (allt, "#2E9E4F")], unit="mm"))
+    save("archief/logo-1-oranje/sleutelhanger-voorbeeld-oranje.svg", svg(k["w"], k["h"], [(plate, ZWART), (text, WIT), (accent, ORANJE)], unit="mm"))
 
     # STL: SVG heeft y omlaag, 3D heeft y omhoog -> spiegel zodat de tekst leesbaar is
     def flip(g):
@@ -195,18 +196,18 @@ def keychain_files():
     base = full.difference(pocket)
     tekst = extrude(flip(text), k["inleg"], k["dikte"] - k["inleg"])
     acc = extrude(flip(accent), k["inleg"], k["dikte"] - k["inleg"])
-    base.export(OUT / "sleutelhanger/sleutelhanger-basis.stl")
-    tekst.export(OUT / "sleutelhanger/sleutelhanger-tekst.stl")
-    acc.export(OUT / "sleutelhanger/sleutelhanger-accent-I.stl")
+    base.export(OUT / "archief/logo-1-oranje/sleutelhanger-basis.stl")
+    tekst.export(OUT / "archief/logo-1-oranje/sleutelhanger-tekst.stl")
+    acc.export(OUT / "archief/logo-1-oranje/sleutelhanger-accent-I.stl")
     return base, tekst, acc
 
 
 if __name__ == "__main__":
-    for d in ["svg", "sleutelhanger", "archief"]:
+    for d in ["archief/logo-1-oranje"]:
         (OUT / d).mkdir(exist_ok=True)
-    save("svg/lwprints-logo.svg", logo1(ZWART))
-    save("svg/lwprints-logo-wit.svg", logo1(WIT))
-    save("svg/lwprints-beeldmerk.svg", beeldmerk1())
+    save("archief/logo-1-oranje/lwprints-logo.svg", logo1(ZWART))
+    save("archief/logo-1-oranje/lwprints-logo-wit.svg", logo1(WIT))
+    save("archief/logo-1-oranje/lwprints-beeldmerk.svg", beeldmerk1())
     # niet gekozen richtingen, bewaard ter referentie
     save("archief/lwprints-logo-2-lagen.svg", logo2(ZWART))
     save("archief/lwprints-logo-3-kubus.svg", logo3(ZWART))

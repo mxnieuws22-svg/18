@@ -9,8 +9,8 @@ from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parents[2]
-LOGO = ROOT / "logo/png/lwprints-logo-zwart-2000.png"
-ORANJE, ZWART, GRIJS = RGBColor(0xFF, 0x6B, 0x00), RGBColor(0x11, 0x11, 0x11), RGBColor(0x66, 0x66, 0x66)
+LOGO = ROOT / "logo/png/lwprints3d-liggend-2000.png"
+BLAUW, ZWART, GRIJS = RGBColor(0x1F, 0x8B, 0xFF), RGBColor(0x11, 0x11, 0x11), RGBColor(0x66, 0x66, 0x66)
 
 
 def shade(cell, hex_color):
@@ -31,7 +31,7 @@ def fixed(table, widths):
         col.width = w
 
 
-def line(doc, color="FF6B00", size=18):
+def line(doc, color="1F8BFF", size=18):
     p = doc.add_paragraph()
     pPr = p._p.get_or_add_pPr()
     bdr = OxmlElement("w:pBdr"); b = OxmlElement("w:bottom")
@@ -59,9 +59,9 @@ sec.top_margin, sec.bottom_margin = Cm(1.8), Cm(1.8)
 
 # kop: logo links, bedrijfsgegevens rechts
 head = doc.add_table(rows=1, cols=2); head.alignment = WD_TABLE_ALIGNMENT.CENTER
-head.cell(0, 0).paragraphs[0].add_run().add_picture(str(LOGO), width=Cm(6.5))
+head.cell(0, 0).paragraphs[0].add_run().add_picture(str(LOGO), width=Cm(7.5))
 info = head.cell(0, 1).paragraphs[0]; info.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-for i, s in enumerate(["LWPRINTS · 3D-printservice", "[Straat en huisnummer]", "[Postcode] Oss",
+for i, s in enumerate(["LWPRINTS3D · 3D-printservice", "onderdeel van LWPRINTS", "[Straat en huisnummer]", "[Postcode] Oss",
                        "[telefoon] · [e-mail]", "lwprints.nl", "KVK [nummer]"]):
     r = info.add_run(s + "\n"); r.font.size = Pt(8.5); r.font.color.rgb = ZWART if i == 0 else GRIJS; r.bold = i == 0
 line(doc)
@@ -106,7 +106,7 @@ for i, (k, v) in enumerate([("Subtotaal", "€ [0,00]"),
     ra = a.paragraphs[0].add_run(k); rb = b.paragraphs[0].add_run(v)
     for r in (ra, rb): r.font.size = Pt(11 if i == 2 else 9.5); r.bold = i == 2
     b.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    if i == 2: shade(a, "FF6B00"); shade(b, "FF6B00")
+    if i == 2: shade(a, "1F8BFF"); shade(b, "1F8BFF"); ra.font.color.rgb = rb.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
 
 fixed(tot, [Cm(4.6), Cm(4.6)])
 doc.add_paragraph()
@@ -124,14 +124,15 @@ for s in ["Deze offerte is 30 dagen geldig.",
 doc.add_paragraph()
 text(doc, "Akkoord? Stuur deze offerte ondertekend terug of bevestig per mail.", space_after=14)
 sig = doc.add_table(rows=1, cols=2)
-for i, who in enumerate(["Namens LWPRINTS", "Akkoord opdrachtgever"]):
+for i, who in enumerate(["Namens LWPRINTS3D", "Akkoord opdrachtgever"]):
     p = sig.cell(0, i).paragraphs[0]
     r = p.add_run(f"{who}\n\n\n______________________________\nNaam:\nDatum:"); r.font.size = Pt(9.5)
 
 line(doc, size=6)
-text(doc, "LWPRINTS · 3D-printservice uit Oss · lwprints.nl · KVK [nummer] · IBAN [nummer]",
+text(doc, "LWPRINTS3D is een onderdeel van LWPRINTS · Oss · lwprints.nl · KVK [nummer] · IBAN [nummer]",
      8, color=GRIJS, align=WD_ALIGN_PARAGRAPH.CENTER)
 
-out = ROOT / "documenten/LWPRINTS-offerte-sjabloon.docx"
+out = ROOT / "documenten/LWPRINTS3D-offerte-sjabloon.docx"
+out.parent.mkdir(exist_ok=True)
 doc.save(out)
 print("opgeslagen:", out)
