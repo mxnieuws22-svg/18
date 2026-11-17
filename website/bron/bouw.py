@@ -6,6 +6,8 @@ Pas bedrijfsgegevens aan in GEGEVENS hieronder en draai:  python3 website/bron/b
 import json
 from pathlib import Path
 
+from voorwaarden import ARTIKELEN, VERSIE
+
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://lwprints3d.nl"
 
@@ -129,7 +131,7 @@ def layout(page, title, desc, body):
         </ul>
       </div>
     </div>
-    <div class="onder"><span>&copy; <span data-jaar>2026</span> {G['naam']} · onderdeel van {G['moeder']}</span><a href="/privacy">Privacyverklaring</a></div>
+    <div class="onder"><span>&copy; <span data-jaar>2026</span> {G['naam']} · onderdeel van {G['moeder']}</span><span><a href="/algemene-voorwaarden">Algemene voorwaarden</a> · <a href="/privacy">Privacyverklaring</a></span></div>
   </div>
 </footer>
 <script src="/assets/js/main.js" defer></script>
@@ -399,7 +401,7 @@ def offerte():
   </div>
   <div class="hp" aria-hidden="true"><label for="website">Laat dit veld leeg</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
   <button type="submit" class="btn btn-blauw">Offerte aanvragen</button>
-  <p class="muted" style="margin:14px 0 0;font-size:.9rem">Je gegevens en bestanden gebruiken we alleen voor je offerte. Lees de <a href="/privacy">privacyverklaring</a>.</p>
+  <p class="muted" style="margin:14px 0 0;font-size:.9rem">Je gegevens en bestanden gebruiken we alleen voor je offerte. Lees de <a href="/privacy">privacyverklaring</a> en de <a href="/algemene-voorwaarden">algemene voorwaarden</a>.</p>
   <div id="melding" class="melding" role="status" aria-live="polite"></div>
 </form>
 </div></section>"""
@@ -464,6 +466,16 @@ def privacy():
 </div></section>"""
 
 
+def voorwaarden():
+    arts = "".join(
+        f"<h2>Artikel {i}. {t}</h2><ol>" + "".join(f"<li>{z.replace('[KVK-nummer]', G['kvk'])}</li>" for z in zinnen) + "</ol>"
+        for i, (t, zinnen) in enumerate(ARTIKELEN, 1))
+    return f"""
+<section class="hero klein"><div class="wrap"><div><div class="kicker">Voorwaarden</div><h1>Algemene voorwaarden</h1>
+<p class="lead">{VERSIE}</p></div></div></section>
+<section><div class="wrap tekst">{arts}</div></section>"""
+
+
 PAGES = [
     ("index.html", "3D printservice Oss · Onderdelen en prototypes op maat · LWPRINTS3D",
      "3D-printservice in Oss. Onderdelen, prototypes, kleine series en producten op maat voor bedrijven en particulieren. Offerte binnen één werkdag.", home),
@@ -481,6 +493,8 @@ PAGES = [
      "Antwoorden op vragen over prijzen, materialen, afmetingen, levertijd en bestanden voor 3D-printen in Oss.", faq),
     ("contact.html", "Contact · LWPRINTS3D 3D-printservice Oss",
      "Neem contact op met LWPRINTS3D in Oss voor 3D-printwerk, onderdelen en prototypes op maat.", contact),
+    ("algemene-voorwaarden.html", "Algemene voorwaarden · LWPRINTS3D",
+     "De algemene voorwaarden van LWPRINTS3D voor offertes, bestellingen en opdrachten.", voorwaarden),
     ("privacy.html", "Privacyverklaring · LWPRINTS3D",
      "Lees hoe LWPRINTS3D omgaat met je persoonsgegevens.", privacy),
 ]

@@ -118,7 +118,7 @@ for s in ["Deze offerte is 30 dagen geldig.",
           "Betaal je het tekenwerk, dan is het ontwerp van jou. Ik bewaar het voor nabestellingen.",
           "3D-geprinte onderdelen zijn niet bedoeld voor toepassingen waar de veiligheid van personen van afhangt.",
           "Kleine verschillen in kleur en oppervlak zijn eigen aan 3D-printen.",
-          "Op deze offerte zijn de algemene voorwaarden van LWPRINTS van toepassing."]:
+          "Op deze offerte zijn de algemene voorwaarden van LWPRINTS3D van toepassing (lwprints3d.nl/algemene-voorwaarden)."]:
     p = doc.add_paragraph(style="List Bullet"); r = p.add_run(s); r.font.size = Pt(9.5)
 
 doc.add_paragraph()

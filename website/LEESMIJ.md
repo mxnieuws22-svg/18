@@ -41,3 +41,7 @@ Open http://localhost:3000. Met `OFFERTE_TEST=1` wordt er geen echte mail verstu
 | `api/offerte.js` | Verstuurt offerteaanvragen per e-mail (max. 4 MB bijlage) |
 | `vercel.json` | Schone URL's en beveiligingsheaders |
 | `sitemap.xml`, `robots.txt` | Voor Google |
+
+## Algemene voorwaarden
+De tekst staat in `bron/voorwaarden.py` en wordt de pagina `/algemene-voorwaarden`.
+Het is een model, geen juridisch advies: laat het controleren voordat je de site live zet.
