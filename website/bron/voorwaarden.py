@@ -5,7 +5,7 @@ VERSIE = "Versie november 2026"
 
 ARTIKELEN = [
     ("Definities", [
-        "LWPRINTS3D: de 3D-printservice van LWPRINTS, gevestigd in Oss, ingeschreven bij de KVK onder nummer [KVK-nummer].",
+        "LWPRINTS3D: de 3D-printservice van LWPRINTS, gevestigd in Oss, ingeschreven bij de KVK onder nummer 98938185.",
         "Klant: iedereen die een offerte vraagt, een bestelling plaatst of een opdracht geeft. Dat kan een consument zijn (een particulier) of een zakelijke klant.",
         "Maatwerk: een product dat volgens de wensen of specificaties van de klant wordt gemaakt of gepersonaliseerd, bijvoorbeeld met een naam, logo, eigen maat of eigen ontwerp.",
     ]),

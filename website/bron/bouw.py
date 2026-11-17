@@ -24,7 +24,7 @@ GEGEVENS = {
     "whatsapp": "",  # bijv. 31612345678 (zonder + en spaties); leeg = geen WhatsApp-knop
     "plaats": "Oss",
     "werkgebied": "Oss, Uden, Veghel, Nijmegen en omgeving",
-    "kvk": "[KVK-nummer]",
+    "kvk": "98938185",
     "contactpersoon": "Luc",
 }
 # ---------------------------------------------------------------------------
