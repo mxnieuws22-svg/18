@@ -57,7 +57,7 @@ head = doc.add_table(rows=1, cols=2)
 head.cell(0, 0).paragraphs[0].add_run().add_picture(str(LOGO), width=Cm(6.5))
 info = head.cell(0, 1).paragraphs[0]; info.alignment = WD_ALIGN_PARAGRAPH.RIGHT
 for i, s in enumerate(["LWPRINTS3D · onderdeel van LWPRINTS", "Gerrit van der Veenstraat 113", "5348 RC Oss",
-                       "06-83161278 · lwprints88@gmail.com", "lwprints3d.nl", "KVK 98938185", "IBAN NL11 RABO 0167 2853 78"]):
+                       "06-83161278 · info@lwprints.nl", "lwprints3d.nl", "KVK 98938185", "IBAN NL11 RABO 0167 2853 78"]):
     r = info.add_run(s + "\n"); r.font.size = Pt(8.5); r.bold = i == 0; r.font.color.rgb = ZWART if i == 0 else GRIJS
 line(doc)
 

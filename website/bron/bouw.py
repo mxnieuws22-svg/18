@@ -16,7 +16,7 @@ GEGEVENS = {
     "naam": "LWPRINTS3D",
     "moeder": "LWPRINTS",
     "moeder_url": "https://lwprints.nl",
-    "email": "lwprints88@gmail.com",
+    "email": "info@lwprints.nl",
     "telefoon": "06-83161278",
     "telefoon_link": "+31683161278",
     "adres": "Gerrit van der Veenstraat 113",

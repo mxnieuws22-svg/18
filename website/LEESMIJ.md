@@ -18,7 +18,7 @@ Vul op de pagina **Over** (`over` in `bron/bouw.py`) je eigen verhaal in, op de 
    | SMTP_PORT | 465 |
    | SMTP_USER | je Gmail-adres |
    | SMTP_PASS | een Gmail **app-wachtwoord** (niet je gewone wachtwoord) |
-   | OFFERTE_NAAR | lwprints88@gmail.com |
+   | OFFERTE_NAAR | info@lwprints.nl |
 4. **Settings → Domains:** koppel `lwprints3d.nl` en `www.lwprints3d.nl` aan dit project.
 5. **Settings → Deployment Protection:** zet bescherming voor productie uit, anders zien bezoekers een inlogscherm.
 6. Deploy opnieuw nadat je de variabelen hebt ingesteld.
