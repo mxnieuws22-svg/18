@@ -14,7 +14,7 @@ from shapely.ops import unary_union
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from maak_logo import LETTERS, GAP, place, svg, path_d  # noqa: E402
 
-OUT = Path(__file__).resolve().parent.parent
+OUT = Path(__file__).resolve().parent.parent / "archief/logo-printkop"  # ARCHIEF: niet meer het actieve logo
 ZWART, WIT, BLAUW, GRIJS = "#111111", "#FFFFFF", "#1F8BFF", "#8A939E"
 
 LETTERS["3"] = (58, Polygon([(0, 0), (58, 0), (58, 100), (0, 100), (0, 78), (36, 78), (36, 61), (12, 61),

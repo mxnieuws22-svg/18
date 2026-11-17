@@ -1,5 +1,7 @@
 # LWPRINTS3D huisstijl en logobestanden
 
+Logo: "LWPRINTS" in Inter ExtraBold met een blauw 3D-label. Inter valt onder de SIL Open Font License (vrij te gebruiken, ook in een logo); de letters zijn omgezet naar vormen.
+
 LWPRINTS3D is het 3D-printonderdeel van LWPRINTS. Kleding houdt het eigen T-shirtlogo.
 
 ## Kleuren
@@ -7,7 +9,7 @@ LWPRINTS3D is het 3D-printonderdeel van LWPRINTS. Kleding houdt het eigen T-shir
 |---|---|---|
 | Zwart | #111111 | Logo, tekst, achtergronden |
 | Wit | #FFFFFF | Achtergrond, logo op donker |
-| Blauw | #1F8BFF | Accent: W, filament, "3D", knoppen, lijnen |
+| Blauw | #1F8BFF | Accent: het 3D-label, het streepje onder LW, knoppen, lijnen |
 
 Lettertype voor teksten op website en documenten: Arial of een vergelijkbare schreefloze letter.
 
@@ -16,13 +18,15 @@ Lettertype voor teksten op website en documenten: Arial of een vergelijkbare sch
 |---|---|
 | svg/lwprints3d-liggend(-wit) | Website-header, offerte, e-mailhandtekening |
 | svg/lwprints3d-staand(-wit) | Flyer, visitekaartje, verpakking |
-| svg/lwprints3d-beeldmerk(-wit) | Los beeldmerk, stickers |
+| svg/lwprints3d-beeldmerk(-wit) | Beeldmerk LW in een vierkant (zwart of wit) |
+| svg/lwprints3d-beeldmerk-los(-wit) | LW zonder vierkant, voor op een eigen achtergrond |
+| svg/lwprints3d-beeldmerk-animatie | Geanimeerd beeldmerk voor de website |
 | svg/lwprints3d-profielfoto | Profielfoto Instagram en Facebook (zwarte achtergrond) |
 | svg/lwprints3d-favicon | Alleen voor heel klein: browsertabblad, app-icoon |
 | png/ | Dezelfde bestanden als afbeelding (2000 en 600 px breed) |
 | social/ | Facebook-omslag 1640 × 624 en Instagram-sjabloon 1080 × 1350 |
-| sleutelhanger/ | Printklare STL's: tekstversie (60 × 18 mm) en ronde versie (40 mm) |
-| archief/ | Niet gekozen richtingen, alleen ter referentie |
+| sleutelhanger/ | Printklare STL's: tekstversie (64 × 18 mm) en ronde versie (40 mm) |
+| archief/, nieuw/, simpel/ | Eerdere en niet gekozen richtingen, alleen ter referentie |
 | ../documenten/ | Offertesjabloon (Word) |
 
 ## Regels
@@ -39,4 +43,4 @@ Elke sleutelhanger bestaat uit drie onderdelen: `-basis` (zwart), `-wit` en `-bl
 
 ## Opnieuw maken
 `pip install shapely trimesh mapbox_earcut manifold3d python-docx`, daarna:
-`python3 logo/bron/maak_logo_3d.py`, `node logo/bron/render_png.js` (Playwright nodig) en `python3 logo/bron/maak_offerte.py`.
+`python3 logo/bron/maak_logo_label.py`, `node logo/bron/render_png.js` (Playwright nodig) en `python3 logo/bron/maak_offerte.py`.

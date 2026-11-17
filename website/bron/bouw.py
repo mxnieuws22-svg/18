@@ -98,7 +98,7 @@ def layout(page, title, desc, body):
 <a class="skip" href="#inhoud">Naar de inhoud</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="/" aria-label="{G['naam']} home"><img src="/assets/img/lwprints3d-liggend-wit.svg" alt="{G['naam']}" width="180" height="62"></a>
+    <a class="logo" href="/" aria-label="{G['naam']} home"><img src="/assets/img/lwprints3d-liggend-wit.svg" alt="{G['naam']}" width="180" height="34"></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
     <nav class="nav" aria-label="Hoofdmenu">{nav}<a class="btn btn-blauw" href="/offerte">Offerte aanvragen</a></nav>
   </div>
@@ -110,7 +110,7 @@ def layout(page, title, desc, body):
   <div class="wrap">
     <div class="kolommen">
       <div>
-        <a class="logo" href="/"><img src="/assets/img/lwprints3d-liggend-wit.svg" alt="{G['naam']}" width="150" height="52"></a>
+        <a class="logo" href="/"><img src="/assets/img/lwprints3d-liggend-wit.svg" alt="{G['naam']}" width="160" height="30"></a>
         <p>3D-printservice uit {G['plaats']}. Onderdelen, prototypes en producten op maat voor bedrijven en particulieren.</p>
         <p>{G['naam']} is een onderdeel van <a href="{G['moeder_url']}">{G['moeder']}</a>. Kleding bedrukken? Kijk op <a href="{G['moeder_url']}">{G['moeder_url'].replace('https://', '')}</a>.</p>
       </div>
