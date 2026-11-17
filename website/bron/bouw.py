@@ -17,7 +17,10 @@ GEGEVENS = {
     "moeder": "LWPRINTS",
     "moeder_url": "https://lwprints.nl",
     "email": "lwprints88@gmail.com",
-    "telefoon": "[jouw telefoonnummer]",
+    "telefoon": "06-83161278",
+    "telefoon_link": "+31683161278",
+    "adres": "Gerrit van der Veenstraat 113",
+    "postcode": "",  # bijv. 5341 AB; leeg = niet tonen
     "whatsapp": "",  # bijv. 31612345678 (zonder + en spaties); leeg = geen WhatsApp-knop
     "plaats": "Oss",
     "werkgebied": "Oss, Uden, Veghel, Nijmegen en omgeving",
@@ -71,7 +74,7 @@ def layout(page, title, desc, body):
         "@context": "https://schema.org", "@type": "LocalBusiness", "name": G["naam"],
         "description": "3D-printservice in Oss: onderdelen, prototypes, kleine series en producten op maat.",
         "url": SITE, "image": f"{SITE}/assets/img/lwprints3d-profielfoto-1080.png",
-        "areaServed": ["Oss", "Uden", "Veghel", "Nijmegen"], "address": {"@type": "PostalAddress", "addressLocality": G["plaats"], "addressCountry": "NL"},
+        "areaServed": ["Oss", "Uden", "Veghel", "Nijmegen"], "telephone": G["telefoon_link"], "email": G["email"], "address": {"@type": "PostalAddress", "streetAddress": G["adres"], **({"postalCode": G["postcode"]} if G["postcode"] else {}), "addressLocality": G["plaats"], "addressCountry": "NL"},
         "parentOrganization": {"@type": "Organization", "name": G["moeder"], "url": G["moeder_url"]},
     }
     canonical = SITE + href(page)
@@ -124,7 +127,8 @@ def layout(page, title, desc, body):
         <h3>Contact</h3>
         <ul>
           <li><a href="mailto:{G['email']}">{G['email']}</a></li>
-          <li>{G['telefoon']}</li>
+          <li><a href="tel:{G['telefoon_link']}">{G['telefoon']}</a></li>
+          <li>{G['adres']}, {(G['postcode'] + ' ') if G['postcode'] else ''}{G['plaats']}</li>
           {wa}
           <li>Werkgebied: {G['werkgebied']}</li>
           <li>KVK {G['kvk']}</li>
@@ -438,8 +442,8 @@ def contact():
 </div></div></section>
 <section><div class="wrap"><div class="grid grid-3">
   <div class="kaart"><h3>E-mail</h3><p><a href="mailto:{G['email']}">{G['email']}</a></p></div>
-  <div class="kaart"><h3>Telefoon</h3><p>{G['telefoon']}</p>{wa}</div>
-  <div class="kaart"><h3>Werkgebied</h3><p>{G['werkgebied']}. Afhalen in {G['plaats']} op afspraak.</p></div>
+  <div class="kaart"><h3>Telefoon</h3><p><a href="tel:{G['telefoon_link']}">{G['telefoon']}</a></p>{wa}</div>
+  <div class="kaart"><h3>Adres</h3><p>{G['adres']}<br>{(G['postcode'] + ' ') if G['postcode'] else ''}{G['plaats']}</p><p class="muted">Afhalen op afspraak. Werkgebied: {G['werkgebied']}.</p></div>
 </div>
 <p class="muted" style="margin-top:24px">{G['naam']} is een onderdeel van {G['moeder']} · KVK {G['kvk']}</p>
 </div></section>
