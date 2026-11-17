@@ -16,7 +16,7 @@ GEGEVENS = {
     "naam": "LWPRINTS3D",
     "moeder": "LWPRINTS",
     "moeder_url": "https://lwprints.nl",
-    "email": "[jouw-e-mailadres]",
+    "email": "lwprints88@gmail.com",
     "telefoon": "[jouw telefoonnummer]",
     "whatsapp": "",  # bijv. 31612345678 (zonder + en spaties); leeg = geen WhatsApp-knop
     "plaats": "Oss",
