@@ -194,3 +194,61 @@ if __name__ == "__main__":
     for name, parts in [("tekst", keychain_rect()), ("rond", keychain_round())]:
         for k, m in parts.items():
             print(f"{name}-{k}: watertight={m.is_watertight} volume={m.volume:.1f} mm3")
+
+
+# --- geanimeerd beeldmerk (voor de website) ----------------------------------
+def animated_svg(main_color=WIT):
+    """Beeldmerk met animatie: ring tekent zich, W wordt laag voor laag geprint, filament stroomt.
+    Respecteert 'prefers-reduced-motion' (dan statisch eindbeeld)."""
+    c, r = 120, 108
+    s = 0.85
+    x0, y0 = c - (52 + GAP + 88) * s / 2, 102
+    L = place(LETTERS["L"][1], x0, y0, s)
+    wx = x0 + (52 + GAP) * s
+    W = place(LETTERS["W"][1], wx, y0, s)
+    kx, peak_y = wx + 44 * s, y0 + 18 * s
+    rail = unary_union([box(70, 52, 170, 61), box(65, 48, 75, 65), box(165, 48, 175, 65)])
+    led = box(78, 55, kx - 20, 58).union(box(kx + 20, 55, 162, 58))
+    head = unary_union([Polygon([(kx - 16, 42), (kx + 16, 42), (kx + 16, 68), (kx + 10, 74), (kx - 10, 74), (kx - 16, 68)]),
+                        Polygon([(kx - 7, 74), (kx + 7, 74), (kx + 4, 81), (kx - 4, 81)])])
+    tip = Polygon([(kx - 4, 81), (kx + 4, 81), (kx, 88)])
+    pts = [(kx + 7 * math.sin(t / 40 * 2 * math.pi) * (1 - t / 40), 88 + t / 40 * (peak_y - 88 + 1)) for t in range(41)]
+    fil_d = "M" + " L".join(f"{x:.2f} {y:.2f}" for x, y in pts)
+
+    def arc_d(a0, a1):
+        p = lambda a: (c + r * math.cos(math.radians(a)), c + r * math.sin(math.radians(a)))
+        (xa, ya), (xb, yb) = p(a0), p(a1)
+        return f"M{xa:.2f} {ya:.2f} A{r} {r} 0 0 1 {xb:.2f} {yb:.2f}"
+
+    arc_len = round(2 * math.pi * r * 170 / 360, 1)
+    wb = W.bounds  # minx, miny, maxx, maxy
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="LWPRINTS3D logo">
+<style>
+.lw-ring-m{{fill:none;stroke:{main_color};stroke-width:8}}
+.lw-ring-b{{fill:none;stroke:{BLAUW};stroke-width:8;stroke-dasharray:{arc_len};stroke-dashoffset:{arc_len};animation:lw-draw 1.4s ease-out .2s forwards}}
+.lw-fil{{fill:none;stroke:{BLAUW};stroke-width:7;stroke-linecap:round;stroke-dasharray:9 5;animation:lw-flow .9s linear infinite}}
+.lw-tip{{fill:{BLAUW};animation:lw-pulse 1.8s ease-in-out infinite}}
+.lw-led{{fill:{BLAUW};animation:lw-pulse 2.4s ease-in-out infinite}}
+.lw-build{{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);animation:lw-build 2.2s steps(12,end) .5s forwards}}
+@keyframes lw-draw{{to{{stroke-dashoffset:0}}}}
+@keyframes lw-flow{{to{{stroke-dashoffset:-14}}}}
+@keyframes lw-pulse{{0%,100%{{opacity:1}}50%{{opacity:.45}}}}
+@keyframes lw-build{{to{{transform:scaleY(1)}}}}
+@media (prefers-reduced-motion:reduce){{.lw-ring-b,.lw-fil,.lw-tip,.lw-led,.lw-build{{animation:none}}.lw-ring-b{{stroke-dashoffset:0}}.lw-build{{transform:none}}}}
+</style>
+<defs><clipPath id="lw-wclip"><rect class="lw-build" x="{wb[0]-2:.2f}" y="{wb[1]-2:.2f}" width="{wb[2]-wb[0]+4:.2f}" height="{wb[3]-wb[1]+4:.2f}"/></clipPath></defs>
+<path class="lw-ring-m" d="{arc_d(95, 265)}"/>
+<path class="lw-ring-b" d="{arc_d(275, 445)}"/>
+<path fill="{main_color}" fill-rule="evenodd" d="{path_d(rail.difference(led))}"/>
+<path class="lw-led" d="{path_d(led)}"/>
+<path fill="{main_color}" fill-rule="evenodd" d="{path_d(L)}"/>
+<path fill="{BLAUW}" fill-rule="evenodd" clip-path="url(#lw-wclip)" d="{path_d(W)}"/>
+<path class="lw-fil" d="{fil_d}"/>
+<path fill="{main_color}" d="{path_d(head)}"/>
+<path class="lw-tip" d="{path_d(tip)}"/>
+</svg>
+"""
+
+
+if __name__ == "__main__":
+    (OUT / "svg/lwprints3d-beeldmerk-animatie.svg").write_text(animated_svg(WIT))

@@ -63,7 +63,10 @@ p { margin: 0 0 1em; }
 .hero .kicker { color: var(--blauw); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: .85rem; margin-bottom: 14px; }
 .hero p.lead { font-size: 1.2rem; color: #d1d5db; max-width: 34em; }
 .hero .acties { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-.hero .beeld img { width: 100%; max-width: 380px; margin-left: auto; }
+.hero .beeld { position: relative; }
+.hero .beeld::before { content: ""; position: absolute; inset: 8%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(31,139,255,.35) 0%, rgba(31,139,255,0) 70%); filter: blur(10px); }
+.hero .beeld svg, .hero .beeld img { position: relative; width: 100%; max-width: 420px; margin-left: auto; height: auto; }
 .hero.klein .wrap { grid-template-columns: 1fr; padding-top: 56px; padding-bottom: 56px; }
 @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .hero .beeld { display: none; } }
 

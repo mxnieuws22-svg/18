@@ -185,7 +185,7 @@ def home():
     <p class="lead">Onderdelen, prototypes en producten op maat. Getekend en geprint in {G['plaats']}, meestal klaar binnen 5 werkdagen.</p>
     <div class="acties"><a class="btn btn-blauw" href="/offerte">Offerte aanvragen</a><a class="btn btn-rand" href="/producten">Bekijk producten</a></div>
   </div>
-  <div class="beeld"><img src="/assets/img/lwprints3d-beeldmerk-wit.svg" alt="" width="380" height="380"></div>
+  <div class="beeld">{(ROOT / "assets/img/lwprints3d-beeldmerk-animatie.svg").read_text()}</div>
 </div></section>
 
 <section><div class="wrap">
