@@ -20,7 +20,7 @@ GEGEVENS = {
     "telefoon": "06-83161278",
     "telefoon_link": "+31683161278",
     "adres": "Gerrit van der Veenstraat 113",
-    "postcode": "",  # bijv. 5341 AB; leeg = niet tonen
+    "postcode": "5348 RC",
     "whatsapp": "",  # bijv. 31612345678 (zonder + en spaties); leeg = geen WhatsApp-knop
     "plaats": "Oss",
     "werkgebied": "Oss, Uden, Veghel, Nijmegen en omgeving",
