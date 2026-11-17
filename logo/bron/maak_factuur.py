@@ -57,7 +57,7 @@ head = doc.add_table(rows=1, cols=2)
 head.cell(0, 0).paragraphs[0].add_run().add_picture(str(LOGO), width=Cm(6.5))
 info = head.cell(0, 1).paragraphs[0]; info.alignment = WD_ALIGN_PARAGRAPH.RIGHT
 for i, s in enumerate(["LWPRINTS3D · onderdeel van LWPRINTS", "Gerrit van der Veenstraat 113", "5348 RC Oss",
-                       "06-83161278 · lwprints88@gmail.com", "lwprints3d.nl", "KVK [nummer]", "IBAN [nummer]"]):
+                       "06-83161278 · lwprints88@gmail.com", "lwprints3d.nl", "KVK [nummer]", "IBAN NL11 RABO 0167 2853 78"]):
     r = info.add_run(s + "\n"); r.font.size = Pt(8.5); r.bold = i == 0; r.font.color.rgb = ZWART if i == 0 else GRIJS
 line(doc)
 
@@ -102,12 +102,12 @@ fixed(tot, [Cm(4.6), Cm(4.6)])
 doc.add_paragraph()
 text(doc, "Vrijgesteld van btw op grond van de kleineondernemersregeling (KOR).", 9.5, color=GRIJS, after=10)
 text(doc, "Betaling", 11, True, after=2)
-text(doc, "Graag het totaalbedrag binnen 14 dagen overmaken naar IBAN [nummer] t.n.v. [naam rekeninghouder], "
+text(doc, "Graag het totaalbedrag binnen 14 dagen overmaken naar IBAN NL11 RABO 0167 2853 78 t.n.v. [naam rekeninghouder], "
           "onder vermelding van het factuurnummer.", after=10)
 text(doc, "Bedankt voor je opdracht! Op deze factuur zijn de algemene voorwaarden van LWPRINTS3D van toepassing "
           "(lwprints3d.nl/algemene-voorwaarden).", 9.5, after=10)
 line(doc, size=6)
-text(doc, "LWPRINTS3D is een onderdeel van LWPRINTS · Oss · lwprints3d.nl · KVK [nummer] · IBAN [nummer]",
+text(doc, "LWPRINTS3D is een onderdeel van LWPRINTS · Oss · lwprints3d.nl · KVK [nummer] · IBAN NL11 RABO 0167 2853 78",
      8, color=GRIJS, align=WD_ALIGN_PARAGRAPH.CENTER)
 
 out = ROOT / "documenten/LWPRINTS3D-factuur-sjabloon.docx"
