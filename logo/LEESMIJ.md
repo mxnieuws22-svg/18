@@ -1,22 +1,38 @@
-# LWPRINTS logo-bestanden
+# LWPRINTS huisstijl en logobestanden
 
-Eigen blokletters (geen lettertype), dus vrij te gebruiken en goed te printen.
-Kleuren: zwart #111111, wit #FFFFFF, oranje #FF6B00.
+## Kleuren
+| Kleur | Hex | Gebruik |
+|---|---|---|
+| Zwart | #111111 | Logo, tekst, achtergronden |
+| Wit | #FFFFFF | Achtergrond, logo op donker |
+| Oranje | #FF6B00 | Alleen als accent: de I in het logo, knoppen, lijnen |
 
-| Bestand | Gebruik |
+Lettertype voor teksten op website en documenten: Arial of een vergelijkbare schreefloze letter.
+
+## Regels
+- Gebruik het logo altijd uit deze bestanden. Niet opnieuw typen, niet uitrekken.
+- Houd rondom het logo minstens de breedte van de letter I vrij.
+- Kleinste formaat: 25 mm breed op papier, 120 pixels op een scherm. Kleiner: gebruik het beeldmerk.
+- Oranje is een accent. Geen grote oranje vlakken met zwarte tekst erop.
+- Op een donkere achtergrond: de witte versie.
+
+## Bestanden
+| Map | Wat |
 |---|---|
-| lwprints-logo-1-woordmerk(-wit).svg | Richting 1: woordmerk, de I in oranje |
-| lwprints-logo-2-lagen(-wit).svg | Richting 2: letters uit printlagen |
-| lwprints-logo-3-kubus(-wit).svg | Richting 3: kubus naast de naam |
-| lwprints-beeldmerk.svg | Profielfoto, favicon, kleine producten |
-| sleutelhanger-basis.stl / -inleg.stl | Printklaar: 54 × 18 × 3 mm, inleg 0,6 mm |
-| sleutelhanger-*.svg | Dezelfde sleutelhanger als 2D-bestand |
+| svg/ | lwprints-logo (zwart), lwprints-logo-wit, lwprints-beeldmerk. Gebruik SVG waar het kan (website, drukwerk). |
+| png/ | Dezelfde logo's als afbeelding. beeldmerk-1080 = profielfoto, 512/180/32 = favicon en app-icoon. |
+| social/ | Facebook-omslag 1640 × 624 en een Instagram-sjabloon 1080 × 1350. |
+| sleutelhanger/ | Printklare STL's: basis, tekst en de I als apart onderdeel. |
+| archief/ | Niet gekozen richtingen, alleen ter referentie. |
+| ../documenten/ | Offertesjabloon (Word). |
 
-## Sleutelhanger printen (twee kleuren)
-1. Laad `sleutelhanger-basis.stl` en `sleutelhanger-inleg.stl` tegelijk in de slicer.
+## Sleutelhanger printen
+1. Laad `sleutelhanger-basis.stl`, `sleutelhanger-tekst.stl` en `sleutelhanger-accent-I.stl` tegelijk in de slicer.
 2. Kies "laden als één object met meerdere onderdelen" als de slicer dat vraagt.
-3. Geef de basis zwart en de inleg groen (of oranje).
-4. Laaghoogte 0,2 mm. Zet 10 stuks op de plaat om het spoelafval te verdelen.
+3. Kleuren nu: basis zwart, tekst en I groen. Later: tekst wit, I oranje.
+4. Laaghoogte 0,2 mm. Zet 10 stuks op de plaat. Maat: 54 × 18 × 3 mm, inleg 0,6 mm.
 
-Aanpassen: wijzig de maten in `bron/maak_logo.py` (blok KH) en draai `python3 logo/bron/maak_logo.py`.
-Nodig: `pip install shapely trimesh mapbox_earcut manifold3d`.
+## Opnieuw maken
+`pip install shapely trimesh mapbox_earcut manifold3d python-docx`, daarna
+`python3 logo/bron/maak_logo.py` en `python3 logo/bron/maak_offerte.py`.
+De PNG's zijn gemaakt door de SVG's in een browser te renderen.

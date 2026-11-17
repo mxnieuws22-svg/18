@@ -143,6 +143,18 @@ def beeldmerk():
     return svg(size, size, [(sq, ZWART), (place(rest, dx, dy, s), WIT), (place(top, dx, dy, s), ORANJE)])
 
 
+# --- beeldmerk in stijl 1: witte LW met oranje "printbed" eronder -------
+def beeldmerk1():
+    lw, _, w = word("LW")
+    size, r = 240, 44
+    sq = box(0, 0, size, size).buffer(-r).buffer(r, quad_segs=16)
+    s = 1.05
+    total_h = 100 * s + 14 + 14
+    dx, dy = (size - w * s) / 2, (size - total_h) / 2
+    bar = box(dx, dy + 100 * s + 14, dx + w * s, dy + 100 * s + 28)
+    return svg(size, size, [(sq, ZWART), (place(lw, dx, dy, s), WIT), (bar, ORANJE)])
+
+
 # --- sleutelhanger (mm) ----------------------------------------------------
 KH = dict(w=54.0, h=18.0, r=4.0, hole_d=5.0, hole_x=6.5, text_x=13.0, text_w=38.0,
           dikte=3.0, inleg=0.6)
@@ -153,18 +165,19 @@ def keychain_shapes():
     plate = box(0, 0, k["w"], k["h"]).buffer(-k["r"]).buffer(k["r"], quad_segs=16)
     hole = Point(k["hole_x"], k["h"] / 2).buffer(k["hole_d"] / 2, quad_segs=32)
     plate = plate.difference(hole)
-    main, _, w = word("LWPRINTS")
+    main, acc, w = word("LWPRINTS", accent_index=4)
     s = k["text_w"] / w
     text = place(main, k["text_x"], (k["h"] - 100 * s) / 2, s)
-    return plate, text
+    accent = place(acc, k["text_x"], (k["h"] - 100 * s) / 2, s)
+    return plate, text, accent
 
 
 def keychain_files():
-    plate, text = keychain_shapes()
+    plate, text, accent = keychain_shapes()
     k = KH
-    save("sleutelhanger-voorbeeld.svg", svg(k["w"], k["h"], [(plate, ZWART), (text, "#2E9E4F")], unit="mm"))
-    save("sleutelhanger-basis.svg", svg(k["w"], k["h"], [(plate.difference(text), ZWART)], unit="mm"))
-    save("sleutelhanger-inleg.svg", svg(k["w"], k["h"], [(text, "#2E9E4F")], unit="mm"))
+    allt = unary_union([text, accent])
+    save("sleutelhanger/sleutelhanger-voorbeeld-groen.svg", svg(k["w"], k["h"], [(plate, ZWART), (allt, "#2E9E4F")], unit="mm"))
+    save("sleutelhanger/sleutelhanger-voorbeeld-oranje.svg", svg(k["w"], k["h"], [(plate, ZWART), (text, WIT), (accent, ORANJE)], unit="mm"))
 
     # STL: SVG heeft y omlaag, 3D heeft y omhoog -> spiegel zodat de tekst leesbaar is
     def flip(g):
@@ -178,23 +191,27 @@ def keychain_files():
         return m
 
     full = extrude(flip(plate), k["dikte"])
-    pocket = extrude(flip(text), k["inleg"] + 0.01, k["dikte"] - k["inleg"])
+    pocket = extrude(flip(allt), k["inleg"] + 0.01, k["dikte"] - k["inleg"])
     base = full.difference(pocket)
-    inlay = extrude(flip(text), k["inleg"], k["dikte"] - k["inleg"])
-    base.export(OUT / "sleutelhanger-basis.stl")
-    inlay.export(OUT / "sleutelhanger-inleg.stl")
-    return base, inlay
+    tekst = extrude(flip(text), k["inleg"], k["dikte"] - k["inleg"])
+    acc = extrude(flip(accent), k["inleg"], k["dikte"] - k["inleg"])
+    base.export(OUT / "sleutelhanger/sleutelhanger-basis.stl")
+    tekst.export(OUT / "sleutelhanger/sleutelhanger-tekst.stl")
+    acc.export(OUT / "sleutelhanger/sleutelhanger-accent-I.stl")
+    return base, tekst, acc
 
 
 if __name__ == "__main__":
-    save("lwprints-logo-1-woordmerk.svg", logo1(ZWART))
-    save("lwprints-logo-1-woordmerk-wit.svg", logo1(WIT))
-    save("lwprints-logo-2-lagen.svg", logo2(ZWART))
-    save("lwprints-logo-2-lagen-wit.svg", logo2(WIT))
-    save("lwprints-logo-3-kubus.svg", logo3(ZWART))
-    save("lwprints-logo-3-kubus-wit.svg", logo3(WIT))
-    save("lwprints-beeldmerk.svg", beeldmerk())
-    base, inlay = keychain_files()
+    for d in ["svg", "sleutelhanger", "archief"]:
+        (OUT / d).mkdir(exist_ok=True)
+    save("svg/lwprints-logo.svg", logo1(ZWART))
+    save("svg/lwprints-logo-wit.svg", logo1(WIT))
+    save("svg/lwprints-beeldmerk.svg", beeldmerk1())
+    # niet gekozen richtingen, bewaard ter referentie
+    save("archief/lwprints-logo-2-lagen.svg", logo2(ZWART))
+    save("archief/lwprints-logo-3-kubus.svg", logo3(ZWART))
+    save("archief/lwprints-beeldmerk-lagen.svg", beeldmerk())
+    parts = keychain_files()
     print("klaar")
-    print("basis watertight:", base.is_watertight, "volume mm3:", round(base.volume, 1))
-    print("inleg watertight:", inlay.is_watertight, "volume mm3:", round(inlay.volume, 1))
+    for name, m in zip(["basis", "tekst", "accent-I"], parts):
+        print(name, "watertight:", m.is_watertight, "volume mm3:", round(m.volume, 1))
